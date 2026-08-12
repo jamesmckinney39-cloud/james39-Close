@@ -1,0 +1,43 @@
+THE CLOSE — FIELD CHEAT SHEET
+=============================
+
+Search in index.html for:  EDIT ME
+
+UPLOAD FOLDERS (put real files here)
+  music/   → .mp3 songs
+  videos/  → .mp4 videos
+  images/  → photos
+
+┌──────────────────┬────────────────────────────────────────────┐
+│ Want to change…  │ Edit this field                            │
+├──────────────────┼────────────────────────────────────────────┤
+│ Band name        │ brand.bandName                             │
+│ Tagline          │ brand.tagline                              │
+│ Booking email    │ brand.bookingEmail                         │
+│ Hero photo       │ hero.image                                 │
+│ Enter button     │ hero.enterButton                           │
+│ Section titles   │ sections.music / videos / history / …      │
+│ Song title/blurb │ tracks[i].title / .description             │
+│ Song cover art   │ tracks[i].coverImage                       │
+│ Song AUDIO FILE  │ tracks[i].file  → "music/your-song.mp3"    │
+│ Video title      │ videos[i].title / .description             │
+│ Video thumbnail  │ videos[i].thumbnail                        │
+│ Video FILE       │ videos[i].file  → "videos/your-clip.mp4"   │
+│ Member photo     │ members[i].photo                           │
+│ Member bio       │ members[i].name / .role / .bio             │
+│ Timeline         │ timeline[i].year / .event                  │
+│ Fan photo        │ fans[i].image / .alt / .tall               │
+│ Q&A              │ qa[i].q / .a                               │
+│ Merch photo      │ merch[i].image                             │
+│ Merch price      │ merch[i].price                             │
+│ Shop link        │ merch[i].buyUrl                            │
+│ Instagram etc.   │ socials.instagram / facebook / tiktok      │
+│ Site colors      │ colors.bg / .copper / .text                │
+└──────────────────┴────────────────────────────────────────────┘
+
+PLAYERS
+• Music: Play button streams the mp3; Download saves the file
+• Videos: Watch opens an on-page player; Download saves the mp4
+
+FULL UPLOAD-TO-WIX STEPS
+See: HOW_TO_PUT_THIS_ON_WIX.txt
