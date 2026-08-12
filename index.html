@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Close — Three Distinct Voices. One Singular Sound.</title>
+  <meta name="description" content="Official site for The Close — music, videos, history, merch, and more." />
+  <!--
+  THE CLOSE — UPLOAD MUSIC + VIDEOS TEMPLATE
+
+  MUSIC goes in folder:  music/   (mp3 files)
+  VIDEOS go in folder:   videos/  (mp4 files)
+  PHOTOS go in folder:   images/
+
+  Edit text + filenames in the SITE block (search: EDIT ME)
+  Full steps: HOW_TO_PUT_THIS_ON_WIX.txt
+  -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0a09;
+      --bg-elevated: #161311;
+      --bg-subtle: #1f1a17;
+      --fg: #f5f0e8;
+      --fg-muted: #b5aaa0;
+      --fg-subtle: #8a7f76;
+      --copper: #c4a574;
+      --copper-bright: #d4b896;
+      --border: rgba(245, 240, 232, 0.12);
+      --border-strong: rgba(245, 240, 232, 0.22);
+      --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+      --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+      --radius: 1rem;
+      --shadow: 0 18px 50px -24px rgba(0, 0, 0, 0.65);
+      --max: 72rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    button, a.btn { cursor: pointer; font: inherit; }
+    a { color: inherit; }
+
+    .container {
+      width: min(100% - 2.5rem, var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: clamp(3.5rem, 8vw, 6.5rem) 0;
+    }
+
+    .section-alt { background: rgba(22, 19, 17, 0.45); }
+
+    .section-head {
+      max-width: 36rem;
+      margin: 0 auto 2.75rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--copper);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .section-head p {
+      margin: 1rem 0 0;
+      color: var(--fg-muted);
+      font-size: 1.05rem;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      display: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.25s, border-color 0.25s, backdrop-filter 0.25s;
+    }
+    .nav.is-on { display: block; }
+    .nav.is-solid {
+      background: rgba(12, 10, 9, 0.88);
+      border-bottom-color: var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .nav-inner {
+      width: min(100% - 2rem, var(--max));
+      margin: 0 auto;
+      height: 3.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo:hover { color: var(--copper); }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 0.15rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+    }
+    .nav-links a:hover {
+      color: var(--fg);
+      background: var(--bg-subtle);
+    }
+    .nav-shop {
+      margin-left: 0.35rem !important;
+      border: 1px solid rgba(196, 165, 116, 0.4);
+      background: rgba(196, 165, 116, 0.1);
+      color: var(--copper) !important;
+      border-radius: 999px !important;
+      padding: 0.5rem 1rem !important;
+    }
+    .nav-shop:hover {
+      background: var(--copper) !important;
+      color: var(--bg) !important;
+    }
+    .nav-toggle {
+      display: inline-flex;
+      width: 2.75rem;
+      height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: transparent;
+      color: var(--fg);
+    }
+    .nav-mobile {
+      display: none;
+      border-top: 1px solid var(--border);
+      background: rgba(12, 10, 9, 0.96);
+      padding: 0.75rem 1rem 1rem;
+    }
+    .nav-mobile.is-open { display: block; }
+    .nav-mobile a {
+      display: block;
+      padding: 0.85rem 0.75rem;
+      text-decoration: none;
+      color: var(--fg);
+      border-radius: 0.5rem;
+    }
+    .nav-mobile a:hover { background: var(--bg-subtle); }
+    @media (min-width: 960px) {
+      .nav-links { display: flex; }
+      .nav-toggle { display: none; }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero.is-entered {
+      min-height: 78vh;
+      min-height: 78dvh;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,10,9,0.45), rgba(12,10,9,0.35) 45%, var(--bg)),
+        radial-gradient(ellipse at center, transparent 10%, rgba(12,10,9,0.55) 90%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 4rem 1.25rem;
+      width: min(100%, 48rem);
+    }
+    .hero-kicker {
+      margin: 0 0 1.1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 500;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 5.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+    }
+    .hero-tag {
+      margin: 1.25rem 0 0;
+      font-size: clamp(0.95rem, 2vw, 1.125rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.9);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      margin-top: 2.5rem;
+      padding: 0.75rem 2.5rem;
+      border: 1px solid rgba(196, 165, 116, 0.5);
+      border-radius: 999px;
+      background: var(--copper);
+      color: var(--bg);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--copper-bright); }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      margin-top: 2.5rem;
+      padding: 0.75rem 2rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: rgba(12, 10, 9, 0.45);
+      color: var(--fg);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+
+    /* MUSIC */
+    .track-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+    .track {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+    }
+    .track.is-active { border-color: rgba(196, 165, 116, 0.35); }
+    .track-top {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .track-cover {
+      position: relative;
+      width: 5.5rem;
+      height: 5.5rem;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .track-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .track-num {
+      position: absolute;
+      top: 0.4rem;
+      left: 0.4rem;
+      background: rgba(12,10,9,0.7);
+      color: var(--fg-muted);
+      font-size: 0.65rem;
+      padding: 0.15rem 0.35rem;
+      border-radius: 0.25rem;
+    }
+    .track h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+    .track .desc {
+      margin: 0.35rem 0 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+    }
+    .track-player {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .play-btn {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-subtle);
+      color: var(--fg);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .play-btn:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+    .progress-wrap { flex: 1; min-width: 0; }
+    .progress {
+      height: 0.375rem;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--copper);
+      border-radius: inherit;
+    }
+    .times {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.35rem;
+      font-size: 0.7rem;
+      color: var(--fg-subtle);
+      font-variant-numeric: tabular-nums;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      min-height: 2.75rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(196, 165, 116, 0.4);
+      background: rgba(196, 165, 116, 0.1);
+      color: var(--copper);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-download:hover {
+      background: var(--copper);
+      color: var(--bg);
+    }
+    @media (min-width: 720px) {
+      .track {
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.25rem;
+      }
+      .track-cover { width: 6rem; height: 6rem; }
+      .track h3 { font-size: 1.5rem; }
+      .track-mobile-copy { display: none; }
+    }
+    @media (max-width: 719px) {
+      .track-desktop-copy { display: none; }
+    }
+
+    /* VIDEOS */
+    .video-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 720px) {
+      .video-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .video-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border: 0;
+      padding: 0;
+      width: 100%;
+      background: var(--bg-subtle);
+      cursor: pointer;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s;
+    }
+    .video-thumb:hover img { transform: scale(1.05); }
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(12,10,9,0.75), transparent 55%);
+    }
+    .video-len {
+      position: absolute;
+      z-index: 1;
+      left: 1rem;
+      bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background: rgba(12,10,9,0.7);
+      color: var(--fg);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .video-body { padding: 1.25rem; }
+    .video-body h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .video-body p {
+      margin: 0.4rem 0 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+    }
+    .video-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .btn-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 2.5rem;
+      padding: 0.5rem 1rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--fg);
+      color: var(--bg);
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      min-height: 2.5rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--fg);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .btn-outline:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+
+    /* HISTORY */
+    .members {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 900px) {
+      .members { grid-template-columns: repeat(3, 1fr); }
+    }
+    .member {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+    }
+    .member img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: top;
+    }
+    .member-body { padding: 1.25rem; }
+    .member-role {
+      margin: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 500;
+    }
+    .member h3 {
+      margin: 0.4rem 0 0;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .member p {
+      margin: 0.5rem 0 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline-box {
+      margin-top: 3rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(22, 19, 17, 0.7);
+      padding: clamp(1.5rem, 4vw, 2rem);
+    }
+    .timeline-box h3 {
+      margin: 0 0 1.5rem;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
+    .timeline {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 40rem;
+      display: grid;
+      gap: 1.25rem;
+    }
+    .timeline li {
+      display: grid;
+      gap: 0.15rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--copper);
+    }
+    .timeline .year {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--copper);
+    }
+    .timeline .event { color: var(--fg-muted); font-size: 0.95rem; }
+
+    /* FANS */
+    .masonry {
+      columns: 1;
+      column-gap: 1rem;
+    }
+    @media (min-width: 600px) { .masonry { columns: 2; } }
+    @media (min-width: 960px) { .masonry { columns: 3; } }
+    .masonry figure {
+      break-inside: avoid;
+      margin: 0 0 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+    .masonry img {
+      width: 100%;
+      object-fit: cover;
+    }
+    .masonry .tall { min-height: 18rem; }
+    .masonry .wide { min-height: 12rem; }
+
+    /* Q&A */
+    .qa {
+      max-width: 48rem;
+      margin: 0 auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      overflow: hidden;
+    }
+    .qa-item + .qa-item { border-top: 1px solid var(--border); }
+    .qa-btn {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border: 0;
+      background: transparent;
+      color: var(--fg);
+      text-align: left;
+    }
+    .qa-btn span {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .qa-btn svg {
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+      color: var(--copper);
+      transition: transform 0.2s;
+    }
+    .qa-item.is-open .qa-btn svg { transform: rotate(180deg); }
+    .qa-panel {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      color: var(--fg-muted);
+      font-size: 0.95rem;
+      max-width: 40rem;
+    }
+    .qa-item.is-open .qa-panel { display: block; }
+
+    /* MERCH */
+    .merch-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 600px) { .merch-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .merch-grid { grid-template-columns: repeat(4, 1fr); } }
+    .merch-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+    }
+    .merch-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: var(--bg-subtle);
+    }
+    .merch-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      flex: 1;
+    }
+    .merch-body h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .merch-body p {
+      margin: 0.25rem 0 0;
+      color: var(--fg-muted);
+      font-size: 0.875rem;
+    }
+    .merch-row {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .price {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--copper);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: clamp(3rem, 7vw, 5rem) 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+    }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 600;
+      margin: 0 0 0.75rem;
+    }
+    .footer-note {
+      margin: 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+    }
+    .footer-email {
+      display: inline-block;
+      margin-top: 0.75rem;
+      color: var(--copper);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .footer-email:hover { color: var(--copper-bright); }
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .socials a {
+      color: var(--fg-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .socials a:hover { color: var(--fg); }
+    .mail-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      padding: clamp(1.5rem, 3vw, 2rem);
+    }
+    .mail-card h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .mail-card > p {
+      margin: 0.5rem 0 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+    }
+    .mail-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    @media (min-width: 560px) {
+      .mail-form { flex-direction: row; }
+    }
+    .mail-form input {
+      flex: 1;
+      min-height: 3rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: var(--bg);
+      color: var(--fg);
+      padding: 0 1.25rem;
+      font: inherit;
+      outline: none;
+    }
+    .mail-form input:focus {
+      border-color: var(--copper);
+      box-shadow: 0 0 0 2px rgba(196, 165, 116, 0.25);
+    }
+    .mail-form button {
+      min-height: 3rem;
+      padding: 0 1.5rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--copper);
+      color: var(--bg);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .mail-form button:hover { background: var(--copper-bright); }
+    .footer-bottom {
+      margin-top: 2.5rem;
+      padding-top: 1.75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+      color: var(--fg-subtle);
+      font-size: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: rgba(12, 10, 9, 0.85);
+      backdrop-filter: blur(6px);
+    }
+    .modal.is-open { display: flex; }
+    .modal-card {
+      width: min(100%, 48rem);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-elevated);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-head h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .modal-close {
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: transparent;
+      color: var(--fg-muted);
+    }
+    .modal-stage {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+    }
+    .modal-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+    .modal-msg {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .modal-msg strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .modal-msg p {
+      margin: 0;
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+      max-width: 28rem;
+    }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 1.25rem;
+      transform: translateX(-50%) translateY(120%);
+      z-index: 60;
+      min-width: min(90vw, 20rem);
+      padding: 0.85rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--bg-elevated);
+      color: var(--fg);
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease;
+      font-size: 0.9rem;
+    }
+    .toast.is-on { transform: translateX(-50%) translateY(0); }
+    .toast small {
+      display: block;
+      margin-top: 0.2rem;
+      color: var(--fg-muted);
+      font-size: 0.8rem;
+    }
+
+    .site-main { display: none; }
+    .site-main.is-on { display: block; }
+
+    .hidden { display: none !important; }
+
+    /* Real audio + video embed enhancements */
+    .track audio { display: none; }
+    .modal-stage { position: relative; aspect-ratio: 16 / 9; background: #000; }
+    .modal-stage img,
+    .modal-stage video,
+    .modal-stage iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+    .modal-stage iframe,
+    .modal-stage video { object-fit: contain; background: #000; }
+    .modal-stage.has-media .modal-msg { display: none; }
+    .modal-stage .modal-msg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(12,10,9,0.55);
+      color: var(--fg);
+    }
+    .modal-stage .modal-msg p { margin: 0.35rem 0 0; color: var(--fg-muted); font-size: 0.95rem; }
+    .empty-hint {
+      margin: 0;
+      padding: 1.25rem 1.35rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      color: var(--fg-muted);
+      font-size: 0.95rem;
+      background: rgba(22,19,17,0.5);
+    }
+    .config-banner {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 60;
+      padding: 0.75rem 1rem;
+      background: rgba(12,10,9,0.94);
+      border-top: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+    .config-banner strong { color: var(--copper); }
+
+  
+    .file-missing {
+      margin: 0.5rem 0 0;
+      font-size: 0.8rem;
+      color: var(--fg-subtle);
+    }
+    .progress { cursor: pointer; }
+    .track-main { min-width: 0; }
+    .btn-download:disabled,
+    .play-btn:disabled,
+    .btn-outline:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .modal-stage video {
+      background: #000;
+    }
+
+  </style>
+</head>
+<body>
+
+<!--
+████████████████████████████████████████████████████████████████████
+██                                                                ██
+██   ★★★  EDIT ME — THIS IS THE ONLY SECTION YOU NEED  ★★★      ██
+██                                                                ██
+██   Replace text, photos, and the music/video filenames you upload.       ██
+██   Put mp3s in music/ and mp4s in videos/, then set the file names below.         ██
+██                                                                ██
+████████████████████████████████████████████████████████████████████
+-->
+<script>
+window.SITE = {
+
+  /* ─────────────────────────────────────────────────────────────
+     1) BRAND / CONTACT
+     ───────────────────────────────────────────────────────────── */
+  brand: {
+    bandName: "The Close",
+    tagline: "Three distinct voices. One singular sound.",
+    pageTitle: "The Close — Three Distinct Voices. One Singular Sound.",
+    bookingEmail: "booking@theclosemusic.com",
+    copyright: "© 2026 The Close. All rights reserved.",
+    footerTag: "Three voices · One sound"
+  },
+
+  /* Social links — paste full URLs (or leave "" to hide that icon) */
+  socials: {
+    instagram: "https://instagram.com/",
+    facebook: "https://facebook.com/",
+    tiktok: "https://tiktok.com/"
+  },
+
+  /* Optional theme colors (change if you want a different look) */
+  colors: {
+    bg: "#0c0a09",
+    copper: "#c4a574",
+    text: "#f5f0e8"
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     2) HERO (top banner)
+     Paste your Wix photo URL into image.
+     Example Wix URL: "https://static.wixstatic.com/media/abc123.jpg"
+     Local demo uses: "images/hero.jpg"
+     ───────────────────────────────────────────────────────────── */
+  hero: {
+    kicker: "Official site",
+    enterButton: "Enter Site",
+    exploreButton: "Explore the music",
+    image: "images/hero.jpg"
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     3) SECTION HEADINGS (eyebrows + titles + blurbs)
+     ───────────────────────────────────────────────────────────── */
+  sections: {
+    music: {
+      eyebrow: "Listen",
+      title: "Music Downloads",
+      subtitle: "Press play to listen, or download the tracks straight to your device."
+    },
+    videos: {
+      eyebrow: "Watch",
+      title: "Videos",
+      subtitle: "Watch full videos on site, or download them to keep."
+    },
+    history: {
+      eyebrow: "The road",
+      title: "History Channel",
+      subtitle: "Three voices. One long road. Here’s how we got here."
+    },
+    fans: {
+      eyebrow: "Community",
+      title: "Fan Photos",
+      subtitle: "You show up. We notice. Here’s a little of the proof."
+    },
+    qa: {
+      eyebrow: "Honest answers",
+      title: "Q&A with The Close",
+      subtitle: "Real questions. Honest answers. No press-release filter."
+    },
+    merch: {
+      eyebrow: "Support the road",
+      title: "Merchandise",
+      subtitle: "Wear the music. Support the road."
+    },
+    mailingList: {
+      title: "Sign up below to join our mailing list",
+      subtitle: "Tour dates, new releases, and the occasional road story.",
+      button: "Join",
+      placeholder: "you@email.com",
+      successMessage: "You are on the list — connect this form to Wix Email Marketing for real signups."
+    }
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     4) MUSIC TRACKS  — UPLOAD FILES, NOT LINKS
+     ----------------------------------------------------------------
+     1. Put your .mp3 files in the  music/  folder
+     2. Set "file" to that filename (example: "music/my-song.mp3")
+     3. Visitors get a real player + Download button
+
+     To ADD a track: copy one { ... } block, change title + file.
+     To REMOVE a track: delete that whole { ... } block.
+     ───────────────────────────────────────────────────────────── */
+  tracks: [
+    {
+      title: "River Light",
+      description: "Open-road anthem with layered harmonies and a slow-burn chorus.",
+      coverImage: "images/track-river-light.jpg",
+      file: "music/river-light.mp3"
+    },
+    {
+      title: "Dust & Wire",
+      description: "Gritty acoustic number built around three distinct vocal lines.",
+      coverImage: "images/track-dust-wire.jpg",
+      file: "music/dust-wire.mp3"
+    },
+    {
+      title: "Close to the Edge",
+      description: "Late-night reflection with warm electric textures and tight three-part harmony.",
+      coverImage: "images/track-close-edge.jpg",
+      file: "music/close-edge.mp3"
+    },
+    {
+      title: "Golden Hour",
+      description: "Uplifting, sun-drenched track that feels like the last good day of summer.",
+      coverImage: "images/track-golden-hour.jpg",
+      file: "music/golden-hour.mp3"
+    }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────
+     5) VIDEOS  — UPLOAD FILES, NOT YOUTUBE LINKS
+     ----------------------------------------------------------------
+     1. Put your .mp4 files in the  videos/  folder
+     2. Set "file" to that filename (example: "videos/my-video.mp4")
+     3. Visitors get a full-screen player + Download button
+
+     Thumbnail = the preview image in the grid (from images/)
+     ───────────────────────────────────────────────────────────── */
+  videos: [
+    {
+      title: "River Light (Official Video)",
+      description: "Shot on the same stretch of river that inspired the song.",
+      thumbnail: "images/video-river.jpg",
+      file: "videos/river-light.mp4",
+      length: "0:05"
+    },
+    {
+      title: "Dust & Wire – Live in the Studio",
+      description: "One-take performance captured in a single afternoon.",
+      thumbnail: "images/video-live.jpg",
+      file: "videos/dust-wire-live.mp4",
+      length: "0:05"
+    },
+    {
+      title: "Behind the Close – Session Diaries",
+      description: "Short documentary-style look at how the harmonies come together.",
+      thumbnail: "images/video-behind.jpg",
+      file: "videos/session-diaries.mp4",
+      length: "0:05"
+    },
+    {
+      title: "Golden Hour (Lyric Video)",
+      description: "Simple, warm visual treatment with the full lyrics.",
+      thumbnail: "images/video-lyric.jpg",
+      file: "videos/golden-hour-lyric.mp4",
+      length: "0:05"
+    }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────
+     6) BAND MEMBERS + TIMELINE
+     ───────────────────────────────────────────────────────────── */
+  members: [
+    {
+      name: "James",
+      role: "Vocals / Guitar",
+      bio: "The restless one. Grew up chasing open highways and late-night radio. Writes most of the melodies and somehow still remembers every lyric after three hours of sleep.",
+      photo: "images/member-james.jpg"
+    },
+    {
+      name: "Marcus",
+      role: "Vocals / Guitar",
+      bio: "The quiet architect. Turns half-finished ideas into finished songs. Preferring the corner of the room with the best light and the worst coffee.",
+      photo: "images/member-marcus.jpg"
+    },
+    {
+      name: "Eli",
+      role: "Vocals / Bass",
+      bio: "The glue and the heartbeat. Holds the low end and the high harmonies at the same time. Never met a melody he couldn’t find a third part for.",
+      photo: "images/member-eli.jpg"
+    }
+  ],
+
+  timeline: [
+    { year: "2019", event: "First weekend writing session" },
+    { year: "2021", event: "First proper release" },
+    { year: "2024", event: "Sold-out hometown show" },
+    { year: "2026", event: "New chapter begins" }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────
+     7) FAN PHOTOS
+     tall: true makes the photo taller in the masonry grid
+     ───────────────────────────────────────────────────────────── */
+  fans: [
+    { image: "images/fan-crowd.jpg", alt: "Crowd at a live show", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Early rehearsals", tall: true },
+    { image: "images/fan-van.jpg", alt: "First van tour", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Recording session", tall: true },
+    { image: "images/fan-river.jpg", alt: "River golden hour", tall: false },
+    { image: "images/fan-road.jpg", alt: "Open road", tall: true }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────
+     8) Q&A
+     ───────────────────────────────────────────────────────────── */
+  qa: [
+    {
+      q: "How do three strong voices not turn into a competition?",
+      a: "We learned early that the song is the boss. If a part doesn’t serve the song, it gets cut — even if it’s one of our favorites. Ego loses. The harmony wins."
+    },
+    {
+      q: "What’s the strangest place you’ve written a song?",
+      a: "Back of a moving U-Haul somewhere in Oklahoma. We had one acoustic, a half-dead phone for a recorder, and about forty minutes before the next gas stop. That song still made the record."
+    },
+    {
+      q: "Any advice for bands just starting out?",
+      a: "Play every show like it’s the last one someone will ever see. And record everything — even the bad ideas. You’ll thank yourself later."
+    },
+    {
+      q: "What’s next for The Close?",
+      a: "More miles, more songs, and hopefully a few more golden-hour sessions by the water. We’re just getting started."
+    }
+  ],
+
+  /* ─────────────────────────────────────────────────────────────
+     9) MERCH
+     buyUrl → paste your Wix Stores product link (or any shop URL)
+     ───────────────────────────────────────────────────────────── */
+  merch: [
+    {
+      name: "Classic Logo Tee",
+      description: "Soft black tee with copper “The Close” logo",
+      price: 28,
+      image: "images/merch-tee.jpg",
+      buyUrl: ""
+    },
+    {
+      name: "River Light Vinyl",
+      description: "Limited pressing of the latest single + B-side",
+      price: 24,
+      image: "images/merch-vinyl.jpg",
+      buyUrl: ""
+    },
+    {
+      name: "Tour Poster – Golden Hour Edition",
+      description: "18×24” signed print",
+      price: 35,
+      image: "images/merch-poster.jpg",
+      buyUrl: ""
+    },
+    {
+      name: "Embroidered Cap",
+      description: "Black cap with small copper logo",
+      price: 32,
+      image: "images/merch-cap.jpg",
+      buyUrl: ""
+    }
+  ]
+};
+</script>
+<!-- ★★★ END OF EDITABLE CONFIG — you usually stop here ★★★ -->
+
+
+<!-- ═══════════════ PAGE SHELL (auto-filled from SITE) ═══════════════ -->
+<header class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" id="navLogo">The Close</a>
+    <ul class="nav-links">
+      <li><a href="#music">Music</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#history">History</a></li>
+      <li><a href="#fans">Fans</a></li>
+      <li><a href="#qa">Q&A</a></li>
+      <li><a href="#merch" class="nav-shop">Shop</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#music">Music</a>
+    <a href="#videos">Videos</a>
+    <a href="#history">History</a>
+    <a href="#fans">Fans</a>
+    <a href="#qa">Q&A</a>
+    <a href="#merch">Merch</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <img class="hero-bg" id="heroImg" alt="" />
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <p class="hero-kicker" id="heroKicker">Official site</p>
+    <h1 id="heroTitle">The Close</h1>
+    <p class="hero-tag" id="heroTag">Three distinct voices. One singular sound.</p>
+    <button class="btn-primary" id="enterBtn" type="button">Enter Site</button>
+    <a class="btn-ghost hidden" id="exploreBtn" href="#music">Explore the music</a>
+  </div>
+</section>
+
+<main class="site-main" id="siteMain">
+  <section class="section" id="music">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="music.eyebrow">Listen</p>
+        <h2 data-s="music.title">Music Downloads</h2>
+        <p data-s="music.subtitle"></p>
+      </div>
+      <ul class="track-list" id="trackList"></ul>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="videos">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="videos.eyebrow">Watch</p>
+        <h2 data-s="videos.title">Videos</h2>
+        <p data-s="videos.subtitle"></p>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="history.eyebrow">The road</p>
+        <h2 data-s="history.title">History Channel</h2>
+        <p data-s="history.subtitle"></p>
+      </div>
+      <div class="members" id="members"></div>
+      <div class="timeline-box">
+        <h3>Timeline</h3>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="fans">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="fans.eyebrow">Community</p>
+        <h2 data-s="fans.title">Fan Photos</h2>
+        <p data-s="fans.subtitle"></p>
+      </div>
+      <div class="masonry" id="fanMasonry"></div>
+    </div>
+  </section>
+
+  <section class="section" id="qa">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="qa.eyebrow">Honest answers</p>
+        <h2 data-s="qa.title">Q&A with The Close</h2>
+        <p data-s="qa.subtitle"></p>
+      </div>
+      <div class="qa" id="qaList"></div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="merch">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-s="merch.eyebrow">Support the road</p>
+        <h2 data-s="merch.title">Merchandise</h2>
+        <p data-s="merch.subtitle"></p>
+      </div>
+      <div class="merch-grid" id="merchGrid"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand" id="footerBrand">The Close</p>
+          <p class="footer-note">For booking or more info contact</p>
+          <a class="footer-email" id="footerEmail" href="mailto:booking@theclosemusic.com">BOOKING@THECLOSEMUSIC.COM</a>
+          <div class="socials" id="socials"></div>
+        </div>
+        <div class="mail-card">
+          <h2 id="mailTitle">Sign up below to join our mailing list</h2>
+          <p id="mailSubtitle">Tour dates, new releases, and the occasional road story.</p>
+          <form class="mail-form" id="mailForm">
+            <label class="hidden" for="mailEmail">Email</label>
+            <input id="mailEmail" name="email" type="email" required placeholder="you@email.com" autocomplete="email" />
+            <button type="submit" id="mailBtn">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span id="footerCopy">© 2026 The Close. All rights reserved.</span>
+        <span id="footerTag" style="letter-spacing:0.08em;text-transform:uppercase">Three voices · One sound</span>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle">Video</h3>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-stage" id="modalStage">
+      <img id="modalImg" alt="" />
+      <div class="modal-msg" id="modalMsg">
+        <div>
+          <strong>Add a video file</strong>
+          <p>Add a video file in the <code>videos/</code> folder and set <code>file</code> in SITE.videos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  "use strict";
+  var SITE = window.SITE || {};
+  var B = SITE.brand || {};
+  var S = SITE.sections || {};
+
+  /* ---------- helpers ---------- */
+  function esc(s) {
+    s = String(s == null ? "" : s);
+    return s
+      .replace(/&/g, "&" + "amp;")
+      .replace(/</g, "&" + "lt;")
+      .replace(/>/g, "&" + "gt;")
+      .replace(/"/g, "&" + "quot;");
+  }
+  function media(url) {
+    if (!url) return "";
+    return String(url).trim();
+  }
+  function has(url) {
+    return !!(url && String(url).trim());
+  }
+  function fmt(s) {
+    s = Math.max(0, Math.floor(s || 0));
+    return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+  }
+  function toast(title, detail) {
+    var el = document.getElementById("toast");
+    el.innerHTML = esc(title) + (detail ? "<small>" + esc(detail) + "</small>" : "");
+    el.classList.add("is-on");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.classList.remove("is-on"); }, 2800);
+  }
+  function downloadUrl(url, filename) {
+    if (!has(url)) return false;
+    var a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    if (filename) a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    return true;
+  }
+  function notifyHeight() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    try {
+      window.parent.postMessage({ type: "resize", height: h }, "*");
+      window.parent.postMessage({ intent: "setHeight", height: h }, "*");
+      if (window.parent !== window) {
+        window.parent.postMessage(JSON.stringify({ type: "heightChanged", height: h }), "*");
+      }
+    } catch (e) {}
+  }
+
+  /* ---------- apply brand / colors / section text ---------- */
+  if (SITE.colors) {
+    var r = document.documentElement;
+    if (SITE.colors.bg) r.style.setProperty("--bg", SITE.colors.bg);
+    if (SITE.colors.copper) {
+      r.style.setProperty("--copper", SITE.colors.copper);
+      r.style.setProperty("--copper-bright", SITE.colors.copper);
+    }
+    if (SITE.colors.text) r.style.setProperty("--fg", SITE.colors.text);
+  }
+  if (B.pageTitle) document.title = B.pageTitle;
+  document.getElementById("navLogo").textContent = B.bandName || "The Close";
+  document.getElementById("heroTitle").textContent = B.bandName || "The Close";
+  document.getElementById("heroTag").textContent = B.tagline || "";
+  document.getElementById("heroKicker").textContent = (SITE.hero && SITE.hero.kicker) || "Official site";
+  document.getElementById("enterBtn").textContent = (SITE.hero && SITE.hero.enterButton) || "Enter Site";
+  document.getElementById("exploreBtn").textContent = (SITE.hero && SITE.hero.exploreButton) || "Explore the music";
+  document.getElementById("heroImg").src = media((SITE.hero && SITE.hero.image) || "");
+  document.getElementById("footerBrand").textContent = B.bandName || "The Close";
+  document.getElementById("footerCopy").textContent = B.copyright || "";
+  document.getElementById("footerTag").textContent = B.footerTag || "";
+  var email = B.bookingEmail || "booking@theclosemusic.com";
+  var mailEl = document.getElementById("footerEmail");
+  mailEl.href = "mailto:" + email;
+  mailEl.textContent = email.toUpperCase();
+
+  Object.keys(S).forEach(function (key) {
+    var block = S[key] || {};
+    document.querySelectorAll('[data-s^="' + key + '."]').forEach(function (el) {
+      var field = el.getAttribute("data-s").split(".")[1];
+      if (block[field] != null) el.textContent = block[field];
+    });
+  });
+  if (S.mailingList) {
+    document.getElementById("mailTitle").textContent = S.mailingList.title || "";
+    document.getElementById("mailSubtitle").textContent = S.mailingList.subtitle || "";
+    document.getElementById("mailBtn").textContent = S.mailingList.button || "Join";
+    document.getElementById("mailEmail").placeholder = S.mailingList.placeholder || "you@email.com";
+  }
+
+  /* socials */
+  var socialsEl = document.getElementById("socials");
+  var socialMap = [
+    ["instagram", "Instagram"],
+    ["facebook", "Facebook"],
+    ["tiktok", "TikTok"]
+  ];
+  socialMap.forEach(function (pair) {
+    var url = SITE.socials && SITE.socials[pair[0]];
+    if (!has(url) || url === "https://instagram.com/" || url === "https://facebook.com/" || url === "https://tiktok.com/") {
+      /* still show placeholders so they know where links go */
+    }
+    var a = document.createElement("a");
+    a.href = has(url) ? url : "#";
+    a.textContent = pair[1];
+    if (has(url) && url.indexOf("http") === 0) {
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    }
+    socialsEl.appendChild(a);
+  });
+  var emailA = document.createElement("a");
+  emailA.href = "mailto:" + email;
+  emailA.textContent = "Email";
+  socialsEl.appendChild(emailA);
+
+  /* ---------- TRACKS (uploaded mp3 files + player + download) ---------- */
+  var trackList = document.getElementById("trackList");
+  var tracks = SITE.tracks || [];
+  var currentAudio = null;
+  var currentId = null;
+
+  function stopAllAudio() {
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.ontimeupdate = null;
+      currentAudio.onended = null;
+      currentAudio.onloadedmetadata = null;
+      currentAudio = null;
+    }
+    currentId = null;
+    trackList.querySelectorAll(".track").forEach(function (el) {
+      el.classList.remove("is-active");
+      var btn = el.querySelector(".play-btn");
+      if (btn) btn.textContent = "▶";
+      var bar = el.querySelector(".progress > span");
+      if (bar) bar.style.width = "0%";
+      var t0 = el.querySelector(".t0");
+      if (t0) t0.textContent = "0:00";
+    });
+  }
+
+  function trackFile(t) {
+    return media(t.file || t.audioUrl || t.downloadUrl || "");
+  }
+
+  if (!tracks.length) {
+    trackList.innerHTML = '<p class="empty-hint">No tracks yet. Add .mp3 files to the <strong>music/</strong> folder and list them in <strong>SITE.tracks</strong>.</p>';
+  }
+
+  tracks.forEach(function (t, i) {
+    var li = document.createElement("li");
+    li.className = "track";
+    li.dataset.index = String(i);
+    var src = trackFile(t);
+    var hasAudio = has(src);
+    li.innerHTML =
+      '<div class="track-top">' +
+        '<div class="track-cover"><img alt="" src="' + esc(media(t.coverImage)) + '" /><span class="track-num">0' + (i + 1) + '</span></div>' +
+        '<div class="track-mobile-copy"><h3></h3><p class="desc"></p></div>' +
+      '</div>' +
+      '<div class="track-main">' +
+        '<div class="track-desktop-copy"><h3></h3><p class="desc"></p></div>' +
+        '<div class="track-player" style="margin-top:0.75rem">' +
+          '<button class="play-btn" type="button" aria-label="Play ' + esc(t.title) + '"' + (hasAudio ? "" : " disabled") + '>▶</button>' +
+          '<div class="progress-wrap"><div class="progress"><span></span></div>' +
+          '<div class="times"><span class="t0">0:00</span><span class="tlen">' + (hasAudio ? "—" : "No file") + '</span></div></div>' +
+        '</div>' +
+        (hasAudio
+          ? '<audio preload="metadata" src="' + esc(src) + '"></audio>'
+          : '<p class="file-missing">Add an mp3 to music/ and set file for this track.</p>') +
+      '</div>' +
+      '<button class="btn-download" type="button"' + (hasAudio ? "" : " disabled") + '>Download Track</button>';
+    li.querySelectorAll("h3").forEach(function (h) { h.textContent = t.title || ("Track " + (i + 1)); });
+    li.querySelectorAll(".desc").forEach(function (p) { p.textContent = t.description || ""; });
+    trackList.appendChild(li);
+
+    // show duration when metadata loads
+    var audioEl = li.querySelector("audio");
+    if (audioEl) {
+      audioEl.addEventListener("loadedmetadata", function () {
+        if (!isNaN(audioEl.duration)) {
+          li.querySelector(".tlen").textContent = fmt(audioEl.duration);
+        }
+      });
+    }
+  });
+
+  trackList.addEventListener("click", function (e) {
+    var play = e.target.closest(".play-btn");
+    var dl = e.target.closest(".btn-download");
+    var trackEl = e.target.closest(".track");
+    if (!trackEl) return;
+    var idx = Number(trackEl.dataset.index);
+    var meta = tracks[idx];
+    if (!meta) return;
+    var src = trackFile(meta);
+
+    if (dl) {
+      if (!has(src)) {
+        toast("No audio file yet", "Put an mp3 in music/ and set tracks[].file");
+        return;
+      }
+      var a = document.createElement("a");
+      a.href = src;
+      a.download = (meta.title || "track").replace(/\s+/g, "-") + ".mp3";
+      a.target = "_blank";
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      toast("Download started", meta.title);
+      return;
+    }
+    if (!play || play.disabled) return;
+
+    var id = String(idx);
+    if (currentId === id) {
+      if (currentAudio && !currentAudio.paused) {
+        currentAudio.pause();
+        play.textContent = "▶";
+        trackEl.classList.remove("is-active");
+      } else if (currentAudio) {
+        currentAudio.play().catch(function () {
+          toast("Could not play", "Check that the mp3 file exists at " + src);
+        });
+        play.textContent = "❚❚";
+        trackEl.classList.add("is-active");
+      }
+      return;
+    }
+
+    stopAllAudio();
+    currentId = id;
+    var audio = trackEl.querySelector("audio");
+    if (!audio) {
+      toast("No audio file", "Upload an mp3 into music/ for this track");
+      return;
+    }
+    currentAudio = audio;
+    trackEl.classList.add("is-active");
+    play.textContent = "❚❚";
+
+    function onTime() {
+      if (!currentAudio) return;
+      var d = currentAudio.duration || 0;
+      var c = currentAudio.currentTime || 0;
+      var pct = d ? Math.min(1, c / d) : 0;
+      trackEl.querySelector(".progress > span").style.width = (pct * 100) + "%";
+      trackEl.querySelector(".t0").textContent = fmt(c);
+      if (d && !isNaN(d)) trackEl.querySelector(".tlen").textContent = fmt(d);
+    }
+    audio.ontimeupdate = onTime;
+    audio.onended = function () {
+      stopAllAudio();
+    };
+    audio.onloadedmetadata = onTime;
+    audio.play().catch(function () {
+      toast("Could not play audio", "File missing or blocked: " + src);
+      stopAllAudio();
+    });
+  });
+
+  // click progress bar to seek
+  trackList.addEventListener("click", function (e) {
+    var wrap = e.target.closest(".progress");
+    if (!wrap) return;
+    var trackEl = e.target.closest(".track");
+    if (!trackEl) return;
+    var audio = trackEl.querySelector("audio");
+    if (!audio || !audio.duration) return;
+    var rect = wrap.getBoundingClientRect();
+    var pct = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+    audio.currentTime = pct * audio.duration;
+  });
+
+  /* ---------- VIDEOS (uploaded mp4 + player + download) ---------- */
+  var videoGrid = document.getElementById("videoGrid");
+  var videos = SITE.videos || [];
+  var modal = document.getElementById("videoModal");
+  var modalStage = document.getElementById("modalStage");
+
+  function videoFile(v) {
+    return media(v.file || v.videoUrl || "");
+  }
+
+  function clearModalMedia() {
+    modalStage.classList.remove("has-media");
+    modalStage.querySelectorAll("iframe, video").forEach(function (n) {
+      try { n.pause && n.pause(); } catch (e) {}
+      n.remove();
+    });
+    document.getElementById("modalImg").style.display = "";
+  }
+
+  function openVideo(v) {
+    document.getElementById("modalTitle").textContent = v.title || "Video";
+    clearModalMedia();
+    var img = document.getElementById("modalImg");
+    img.src = media(v.thumbnail);
+    img.style.display = "";
+
+    var src = videoFile(v);
+    if (has(src)) {
+      var vid = document.createElement("video");
+      vid.src = src;
+      vid.controls = true;
+      vid.autoplay = true;
+      vid.playsInline = true;
+      vid.controlsList = "nodownload"; // browser may still allow; we offer Download button separately
+      vid.setAttribute("controlsList", "nodownload");
+      modalStage.appendChild(vid);
+      modalStage.classList.add("has-media");
+      img.style.display = "none";
+      vid.play().catch(function () {
+        toast("Tap play on the video", "Autoplay was blocked by the browser.");
+      });
+    }
+    modal.classList.add("is-open");
+    notifyHeight();
+  }
+
+  function closeVideo() {
+    modal.classList.remove("is-open");
+    clearModalMedia();
+  }
+
+  if (!videos.length) {
+    videoGrid.innerHTML = '<p class="empty-hint">No videos yet. Add .mp4 files to the <strong>videos/</strong> folder and list them in <strong>SITE.videos</strong>.</p>';
+  }
+
+  videos.forEach(function (v) {
+    var src = videoFile(v);
+    var card = document.createElement("article");
+    card.className = "video-card";
+    card.innerHTML =
+      '<button class="video-thumb" type="button" aria-label="Watch ' + esc(v.title) + '">' +
+        '<img alt="" src="' + esc(media(v.thumbnail)) + '" />' +
+        '<span class="video-len">▶ ' + esc(v.length || "Play") + '</span>' +
+      '</button>' +
+      '<div class="video-body">' +
+        '<h3></h3><p></p>' +
+        '<div class="video-actions">' +
+          '<button class="btn-solid watch-btn" type="button">Watch</button>' +
+          '<button class="btn-outline dl-btn" type="button"' + (has(src) ? "" : " disabled") + '>Download</button>' +
+        '</div>' +
+      '</div>';
+    card.querySelector("h3").textContent = v.title || "Video";
+    card.querySelector("p").textContent = v.description || "";
+    card.querySelectorAll(".video-thumb, .watch-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (!has(src)) {
+          toast("No video file yet", "Put an mp4 in videos/ and set videos[].file");
+          return;
+        }
+        openVideo(v);
+      });
+    });
+    card.querySelector(".dl-btn").addEventListener("click", function () {
+      if (!has(src)) {
+        toast("No video file yet", "Upload an mp4 into videos/ for this item");
+        return;
+      }
+      var a = document.createElement("a");
+      a.href = src;
+      a.download = (v.title || "video").replace(/\s+/g, "-") + ".mp4";
+      a.target = "_blank";
+      a.rel = "noopener";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      toast("Download started", v.title);
+    });
+    videoGrid.appendChild(card);
+  });
+
+  document.getElementById("modalClose").addEventListener("click", closeVideo);
+  modal.addEventListener("click", function (e) { if (e.target === modal) closeVideo(); });
+  window.addEventListener("keydown", function (e) { if (e.key === "Escape") closeVideo(); });
+
+  /* ---------- MEMBERS ---------- */
+  var membersEl = document.getElementById("members");
+  (SITE.members || []).forEach(function (m) {
+    var art = document.createElement("article");
+    art.className = "member";
+    art.innerHTML =
+      '<img alt="" src="' + esc(media(m.photo)) + '" />' +
+      '<div class="member-body"><p class="member-role"></p><h3></h3><p class="bio"></p></div>';
+    art.querySelector("img").alt = (m.name || "") + (m.role ? ", " + m.role : "");
+    art.querySelector(".member-role").textContent = m.role || "";
+    art.querySelector("h3").textContent = m.name || "";
+    art.querySelector(".bio").textContent = m.bio || "";
+    membersEl.appendChild(art);
+  });
+
+  var timelineEl = document.getElementById("timeline");
+  (SITE.timeline || []).forEach(function (item) {
+    var li = document.createElement("li");
+    li.innerHTML = '<span class="year"></span><span class="event"></span>';
+    li.querySelector(".year").textContent = item.year || "";
+    li.querySelector(".event").textContent = item.event || "";
+    timelineEl.appendChild(li);
+  });
+
+  /* ---------- FANS ---------- */
+  var masonry = document.getElementById("fanMasonry");
+  (SITE.fans || []).forEach(function (f) {
+    var fig = document.createElement("figure");
+    fig.innerHTML = '<img class="' + (f.tall ? "tall" : "wide") + '" alt="" src="' + esc(media(f.image)) + '" loading="lazy" />';
+    fig.querySelector("img").alt = f.alt || "Fan photo";
+    masonry.appendChild(fig);
+  });
+
+  /* ---------- Q&A ---------- */
+  var qaList = document.getElementById("qaList");
+  (SITE.qa || []).forEach(function (item, i) {
+    var div = document.createElement("div");
+    div.className = "qa-item" + (i === 0 ? " is-open" : "");
+    div.innerHTML =
+      '<button class="qa-btn" type="button" aria-expanded="' + (i === 0) + '">' +
+        '<span></span>' +
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>' +
+      '</button>' +
+      '<div class="qa-panel"></div>';
+    div.querySelector("span").textContent = item.q || "";
+    div.querySelector(".qa-panel").textContent = item.a || "";
+    div.querySelector(".qa-btn").addEventListener("click", function () {
+      var open = div.classList.contains("is-open");
+      qaList.querySelectorAll(".qa-item").forEach(function (el) {
+        el.classList.remove("is-open");
+        el.querySelector(".qa-btn").setAttribute("aria-expanded", "false");
+      });
+      if (!open) {
+        div.classList.add("is-open");
+        div.querySelector(".qa-btn").setAttribute("aria-expanded", "true");
+      }
+      notifyHeight();
+    });
+    qaList.appendChild(div);
+  });
+
+  /* ---------- MERCH ---------- */
+  var merchGrid = document.getElementById("merchGrid");
+  (SITE.merch || []).forEach(function (item) {
+    var card = document.createElement("article");
+    card.className = "merch-card";
+    card.innerHTML =
+      '<img alt="" src="' + esc(media(item.image)) + '" />' +
+      '<div class="merch-body">' +
+        '<div><h3></h3><p></p></div>' +
+        '<div class="merch-row"><span class="price"></span><button class="btn-solid" type="button">Buy Now</button></div>' +
+      '</div>';
+    card.querySelector("img").alt = item.name || "";
+    card.querySelector("h3").textContent = item.name || "";
+    card.querySelector("p").textContent = item.description || "";
+    card.querySelector(".price").textContent = item.price != null ? ("$" + item.price) : "";
+    card.querySelector("button").addEventListener("click", function () {
+      if (has(item.buyUrl)) {
+        window.open(item.buyUrl, "_blank", "noopener,noreferrer");
+      } else {
+        toast(item.name || "Item", "Paste buyUrl (Wix Stores product link) in SITE.merch.");
+      }
+    });
+    merchGrid.appendChild(card);
+  });
+
+  /* ---------- enter site ---------- */
+  var nav = document.getElementById("nav");
+  var main = document.getElementById("siteMain");
+  var hero = document.getElementById("top");
+  var enterBtn = document.getElementById("enterBtn");
+  var exploreBtn = document.getElementById("exploreBtn");
+
+  function enterSite() {
+    enterBtn.classList.add("hidden");
+    exploreBtn.classList.remove("hidden");
+    main.classList.add("is-on");
+    nav.classList.add("is-on");
+    hero.classList.add("is-entered");
+    try { sessionStorage.setItem("the-close-entered", "1"); } catch (e) {}
+    notifyHeight();
+    setTimeout(function () {
+      document.getElementById("music").scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  }
+  try {
+    if (sessionStorage.getItem("the-close-entered") === "1") {
+      enterBtn.classList.add("hidden");
+      exploreBtn.classList.remove("hidden");
+      main.classList.add("is-on");
+      nav.classList.add("is-on");
+      hero.classList.add("is-entered");
+    }
+  } catch (e) {}
+  enterBtn.addEventListener("click", enterSite);
+
+  /* ---------- nav ---------- */
+  var toggle = document.getElementById("navToggle");
+  var mobile = document.getElementById("navMobile");
+  toggle.addEventListener("click", function () {
+    var open = mobile.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    notifyHeight();
+  });
+  mobile.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      mobile.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+  window.addEventListener("scroll", function () {
+    nav.classList.toggle("is-solid", window.scrollY > 24);
+  }, { passive: true });
+
+  /* ---------- mailing list ---------- */
+  document.getElementById("mailForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var val = document.getElementById("mailEmail").value.trim();
+    if (!val || val.indexOf("@") < 0) {
+      toast("Enter a valid email address");
+      return;
+    }
+    toast("You are on the list", (S.mailingList && S.mailingList.successMessage) || "Thanks!");
+    document.getElementById("mailEmail").value = "";
+  });
+
+  window.addEventListener("load", notifyHeight);
+  window.addEventListener("resize", notifyHeight);
+  if (typeof ResizeObserver !== "undefined") {
+    new ResizeObserver(notifyHeight).observe(document.body);
+  }
+  setTimeout(notifyHeight, 500);
+  setTimeout(notifyHeight, 1500);
+})();
+</script>
+</body>
+</html>
