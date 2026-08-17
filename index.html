@@ -619,14 +619,24 @@
     .timeline li {
       display: grid;
       gap: 0.15rem;
-      padding-left: 1.5rem;
+      padding: 0.65rem 0.75rem 0.65rem 1.5rem;
       position: relative;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .timeline li:hover {
+      background: rgba(196, 165, 116, 0.08);
+    }
+    .timeline li:focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 2px;
     }
     .timeline li::before {
       content: "";
       position: absolute;
-      left: 0;
-      top: 0.55rem;
+      left: 0.35rem;
+      top: 1.15rem;
       width: 0.55rem;
       height: 0.55rem;
       border-radius: 999px;
@@ -639,6 +649,14 @@
       color: var(--copper);
     }
     .timeline .event { color: var(--fg-muted); font-size: 0.95rem; }
+    .timeline .more {
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--copper);
+      font-weight: 500;
+    }
 
     /* FANS */
     .masonry {
@@ -1060,7 +1078,27 @@
       margin-inline: auto;
     }
     .member-section {
-      margin: 0 0 2rem;
+      margin: 0 0 2.75rem;
+    }
+    .member-section-photo {
+      margin: 0 auto 1.25rem;
+      max-width: 22rem;
+      text-align: center;
+    }
+    .member-section-photo img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 0.65rem;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      display: block;
+    }
+    .member-section-photo figcaption {
+      margin: 0.65rem 0 0;
+      font-size: 0.85rem;
+      color: var(--fg-subtle);
+      line-height: 1.4;
     }
     .member-section h3 {
       margin: 0 0 0.75rem;
@@ -1076,47 +1114,6 @@
       line-height: 1.65;
     }
     .member-section p:last-child { margin-bottom: 0; }
-    .member-gallery {
-      margin: 2.5rem 0 1.5rem;
-    }
-    .member-gallery > h3 {
-      margin: 0 0 1.75rem;
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 600;
-      color: var(--copper);
-      text-align: center;
-    }
-    .member-gallery-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2.25rem;
-      max-width: 28rem;
-      margin: 0 auto;
-    }
-    .member-gallery-list figure {
-      margin: 0;
-      text-align: center;
-    }
-    .member-gallery-list img {
-      width: 100%;
-      max-width: 22rem;
-      margin: 0 auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      border-radius: 0.65rem;
-      border: 1px solid var(--border);
-      background: var(--bg-elevated);
-      display: block;
-    }
-    .member-gallery-list figcaption {
-      margin: 0.7rem 0 0;
-      font-size: 0.85rem;
-      color: var(--fg-subtle);
-      line-height: 1.4;
-      max-width: 22rem;
-      margin-inline: auto;
-    }
     .member-links {
       margin: 2.25rem 0 0;
       padding-top: 1.75rem;
@@ -1444,11 +1441,13 @@ window.SITE = {
      Click a member card → opens a full detail overlay (not in nav).
 
      photo        = small card photo on the main History section
-     detail.photo = larger portrait at the top of the detail page
-                    (use a different image if you want)
-     detail.sections = long-form text (add as many as you need)
-     detail.gallery  = photos shown one-at-a-time, centered, with caption
-     detail.links    = optional hyperlinks at the bottom
+     detail.photo = optional top portrait (different image if desired)
+     detail.intro = optional lead sentence under the top portrait
+
+     Each section can start with its own centered photo + caption:
+       { photo, caption, heading, paragraphs: [...] }
+
+     detail.links = optional hyperlinks at the bottom
      ───────────────────────────────────────────────────────────── */
   members: [
     {
@@ -1461,6 +1460,8 @@ window.SITE = {
         intro: "The quiet architect of the three-part stack — always chasing the right light, the right take, and the song that still feels unfinished.",
         sections: [
           {
+            photo: "images/fan-rehearsal.jpg",
+            caption: "Placeholder: first rehearsal space",
             heading: "Early years",
             paragraphs: [
               "James grew up with a cheap acoustic, a stack of worn cassettes, and more questions than answers. The first songs were written in the back of cars, on porches after midnight, and in the half-hour windows between day jobs. Nothing was polished. Everything was honest.",
@@ -1469,6 +1470,8 @@ window.SITE = {
             ]
           },
           {
+            photo: "images/fan-van.jpg",
+            caption: "Placeholder: first van tour",
             heading: "Finding the blend",
             paragraphs: [
               "Three strong voices in one room can easily turn into three separate agendas. The trick was learning that the song is the only boss that matters. If a part doesn’t serve the whole, it gets cut — even when it’s one of the favorites.",
@@ -1477,6 +1480,8 @@ window.SITE = {
             ]
           },
           {
+            photo: "images/fan-road.jpg",
+            caption: "Placeholder: somewhere in Oklahoma",
             heading: "On the road",
             paragraphs: [
               "Touring taught patience. Long drives taught economy of words. The best lines still arrive when the light is almost gone and the next town is still two hours away.",
@@ -1485,6 +1490,8 @@ window.SITE = {
             ]
           },
           {
+            photo: "images/fan-studio.jpg",
+            caption: "Placeholder: tracking vocals",
             heading: "In the studio",
             paragraphs: [
               "In the studio he is the one who will play a part forty times if the fortieth is the one that finally sits right under the vocal. Guitar that stays out of the way until it has something to say. Melodies that leave room for two other voices.",
@@ -1492,22 +1499,14 @@ window.SITE = {
             ]
           },
           {
+            photo: "images/fan-river.jpg",
+            caption: "Placeholder: river golden hour",
             heading: "What he brings",
             paragraphs: [
               "A quiet insistence that the song is the boss. A willingness to leave space. The patience to keep chasing the version that feels true instead of the version that simply works.",
-              "The rest is just mileage, late nights, and the occasional perfect golden hour by the water. This page is a placeholder for a much longer story — photos from the van years, early demos, gear notes, and the pieces that never made the record. Swap the dummy paragraphs and image paths for the real ones whenever you’re ready."
+              "The rest is just mileage, late nights, and the occasional perfect golden hour by the water. This page is a placeholder for a much longer story — swap the dummy paragraphs and image paths for the real ones whenever you’re ready."
             ]
           }
-        ],
-        gallery: [
-          { src: "images/fan-rehearsal.jpg", alt: "Rehearsal", caption: "Placeholder: first rehearsal space" },
-          { src: "images/fan-van.jpg", alt: "Van tour", caption: "Placeholder: first van tour" },
-          { src: "images/fan-studio.jpg", alt: "Recording", caption: "Placeholder: tracking vocals" },
-          { src: "images/fan-river.jpg", alt: "River", caption: "Placeholder: river golden hour" },
-          { src: "images/fan-road.jpg", alt: "Open road", caption: "Placeholder: somewhere in Oklahoma" },
-          { src: "images/fan-crowd.jpg", alt: "Crowd", caption: "Placeholder: hometown show" },
-          { src: "images/track-river-light.jpg", alt: "Artwork", caption: "Placeholder: single artwork" },
-          { src: "images/hero.jpg", alt: "Hero shot", caption: "Placeholder: extra press photo" }
         ],
         links: [
           { label: "Instagram", url: "https://instagram.com/" },
@@ -1526,27 +1525,58 @@ window.SITE = {
         intro: "The glue and the heartbeat. If a third part exists, Lori will find it — and make it sound inevitable.",
         sections: [
           {
-            heading: "About Lori",
+            photo: "images/fan-studio.jpg",
+            caption: "Placeholder: early writing session",
+            heading: "Early years",
             paragraphs: [
-              "Placeholder long-form text for Lori. Replace this entire block with her real story, influences, and whatever else you want visitors to read when they click her photo.",
-              "You can add as many sections and paragraphs as you need — the overlay scrolls, so a multi-page-length bio is fine.",
-              "Add more heading + paragraphs blocks below this one to build out a genuinely long page."
+              "Placeholder text for Lori’s early years. Replace with her real story — where the songs started, what shaped the voice, and how the first harmonies found their way into a room.",
+              "Add as many paragraphs as you need here. The layout will keep the photo centered above the heading and text.",
+              "This is the same structure James uses, so the three detail pages stay consistent in length and feel."
             ]
           },
           {
-            heading: "More (placeholder section)",
+            photo: "images/fan-river.jpg",
+            caption: "Placeholder: finding the third part",
+            heading: "Finding the blend",
             paragraphs: [
-              "Another section to show how multi-page content stacks. Keep adding these until the real story is complete."
+              "Placeholder text for how Lori approaches harmony and melody. Replace with real details about listening, arranging, and the instinct for the part that makes the song land.",
+              "Three strong voices only work when someone is holding the center. This section is a good place for that story.",
+              "Keep or cut paragraphs freely once the real copy is in."
+            ]
+          },
+          {
+            photo: "images/fan-van.jpg",
+            caption: "Placeholder: on the road",
+            heading: "On the road",
+            paragraphs: [
+              "Placeholder text for tour life, travel, and the nights that stay with you. Replace with Lori’s version of the miles, the rooms, and the moments between the sets.",
+              "Long drives, late shows, and the quiet work of keeping the blend tight night after night.",
+              "Add more paragraphs if the real story needs the space."
+            ]
+          },
+          {
+            photo: "images/fan-crowd.jpg",
+            caption: "Placeholder: live and in the room",
+            heading: "In the room",
+            paragraphs: [
+              "Placeholder text for studio and stage. Replace with how Lori works in the room — tracking, arranging, and the details that only show up when the three voices are actually together.",
+              "The goal is the take that makes the other parts feel inevitable. When that happens, the song stops belonging to any one person."
+            ]
+          },
+          {
+            photo: "images/fan-road.jpg",
+            caption: "Placeholder: what she brings",
+            heading: "What she brings",
+            paragraphs: [
+              "Placeholder closing section for Lori. Replace with the through-line of her contribution — the glue, the third part, the heartbeat that holds the low end and the high harmonies at the same time.",
+              "Swap every photo path and paragraph for the real ones whenever you’re ready. The layout is already set for multi-page length."
             ]
           }
         ],
-        gallery: [
-          { src: "images/fan-studio.jpg", alt: "Studio", caption: "Placeholder photo" },
-          { src: "images/fan-river.jpg", alt: "River", caption: "Placeholder photo" },
-          { src: "images/fan-crowd.jpg", alt: "Crowd", caption: "Placeholder photo" }
-        ],
         links: [
-          { label: "Instagram", url: "https://instagram.com/" }
+          { label: "Instagram", url: "https://instagram.com/" },
+          { label: "Gear notes (coming soon)", url: "#" },
+          { label: "Early demos playlist", url: "#" }
         ]
       }
     },
@@ -1560,36 +1590,324 @@ window.SITE = {
         intro: "Bass, low harmonies, and the memory for every lyric even after three hours of sleep.",
         sections: [
           {
-            heading: "About Shannon",
+            photo: "images/fan-van.jpg",
+            caption: "Placeholder: open highways",
+            heading: "Early years",
             paragraphs: [
-              "Placeholder long-form text for Shannon. The detail overlay is designed to hold a full biography, tour stories, gear lists, and dozens of photos without feeling cramped.",
-              "Add or remove sections freely. Hyperlinks at the bottom can point to socials, interviews, or anything else."
+              "Placeholder text for Shannon’s early years. Replace with the real story — late-night radio, open highways, and the first songs that refused to stay unfinished.",
+              "Add as many paragraphs as you need. The photo stays centered above the heading and text, same as the other two pages.",
+              "This block mirrors James’s length so all three member pages feel like the same kind of long-form read."
             ]
           },
           {
-            heading: "More (placeholder section)",
+            photo: "images/fan-rehearsal.jpg",
+            caption: "Placeholder: turning ideas into songs",
+            heading: "Finding the blend",
             paragraphs: [
-              "Another section for demonstration. Replace with real content when ready."
+              "Placeholder text for how Shannon shapes unfinished ideas into finished songs and locks in the low end of the harmony.",
+              "Bass and low harmony are the floor the other voices stand on. This is a good place for that part of the story.",
+              "Edit or expand freely once the real copy is ready."
+            ]
+          },
+          {
+            photo: "images/fan-studio.jpg",
+            caption: "Placeholder: miles and memory",
+            heading: "On the road",
+            paragraphs: [
+              "Placeholder text for the road years — the drives, the rooms, and the habit of still knowing every lyric after three hours of sleep.",
+              "Touring leaves a particular kind of memory. Replace this with Shannon’s version of those miles.",
+              "Add more paragraphs if the story needs them."
+            ]
+          },
+          {
+            photo: "images/fan-crowd.jpg",
+            caption: "Placeholder: finishing the song",
+            heading: "In the room",
+            paragraphs: [
+              "Placeholder text for studio and stage work. Replace with how Shannon tracks, listens, and turns a half-finished idea into something the three of them can stand inside.",
+              "When the low end and the lyric both sit right, the rest of the blend has somewhere to land."
+            ]
+          },
+          {
+            photo: "images/fan-river.jpg",
+            caption: "Placeholder: what he brings",
+            heading: "What he brings",
+            paragraphs: [
+              "Placeholder closing section for Shannon. Replace with the through-line of his contribution — the bass, the low harmonies, the memory for every lyric, and the patience to finish what others leave half-done.",
+              "Swap every photo path and paragraph for the real ones whenever you’re ready. The layout already supports multi-page length."
             ]
           }
         ],
-        gallery: [
-          { src: "images/fan-van.jpg", alt: "Van", caption: "Placeholder photo" },
-          { src: "images/fan-rehearsal.jpg", alt: "Rehearsal", caption: "Placeholder photo" },
-          { src: "images/fan-studio.jpg", alt: "Studio", caption: "Placeholder photo" }
-        ],
         links: [
-          { label: "Instagram", url: "https://instagram.com/" }
+          { label: "Instagram", url: "https://instagram.com/" },
+          { label: "Gear notes (coming soon)", url: "#" },
+          { label: "Early demos playlist", url: "#" }
         ]
       }
     }
   ],
 
+  /* Timeline years 2018–2026.
+     Click a year → detail overlay (text first, optional photos after text).
+     Same modal shell as member pages. */
   timeline: [
-    { year: "2019", event: "First weekend writing session" },
-    { year: "2021", event: "First proper release" },
-    { year: "2024", event: "Sold-out hometown show" },
-    { year: "2026", event: "New chapter begins" }
+    {
+      year: "2018",
+      event: "The first conversations that became The Close",
+      detail: {
+        intro: "Placeholder lead for 2018. Replace with how the three of you first started talking about writing and singing together.",
+        sections: [
+          {
+            heading: "How it started",
+            paragraphs: [
+              "Placeholder text for the origin year. Who reached out, where you met, and what made the idea feel worth chasing.",
+              "Add as many paragraphs as you need. Timeline pages start with text; optional photos can sit after a section’s copy.",
+              "This is the same long-form layout as the member pages, just text-first."
+            ],
+            photo: "images/fan-rehearsal.jpg",
+            caption: "Placeholder: early conversation / first room"
+          },
+          {
+            heading: "What was already in motion",
+            paragraphs: [
+              "Placeholder for the songs, projects, or rooms each of you were already in before the trio locked in.",
+              "Keep or cut once the real story is written."
+            ]
+          }
+        ],
+        links: [
+          { label: "Related photos (coming soon)", url: "#" }
+        ]
+      }
+    },
+    {
+      year: "2019",
+      event: "First weekend writing session",
+      detail: {
+        intro: "Placeholder lead for 2019 — the first proper writing weekend and the start of treating this as a real band.",
+        sections: [
+          {
+            heading: "First weekend writing session",
+            paragraphs: [
+              "Placeholder for that first dedicated writing stretch. Where it was, what got written, and what stuck.",
+              "Three voices in one room, learning how to leave space and how to cut what doesn’t serve the song.",
+              "Replace with the real memory of the weekend that set the tone."
+            ],
+            photo: "images/fan-studio.jpg",
+            caption: "Placeholder: first writing session"
+          },
+          {
+            heading: "Playing out",
+            paragraphs: [
+              "Placeholder for the first shows, rooms, and the decision to keep going after that weekend.",
+              "Add more sections if 2019 needs them."
+            ]
+          }
+        ],
+        links: [
+          { label: "Early demos (coming soon)", url: "#" }
+        ]
+      }
+    },
+    {
+      year: "2020",
+      event: "Writing through a stopped world",
+      detail: {
+        intro: "Placeholder lead for 2020 — the year the road closed and the writing didn’t.",
+        sections: [
+          {
+            heading: "Stopped stages, open notebooks",
+            paragraphs: [
+              "Placeholder for how the band wrote, recorded, or stayed connected when live shows disappeared.",
+              "Remote sessions, porch recordings, unfinished ideas that later made the records — put the real story here.",
+              "Optional photo after the text if you have one from that year."
+            ],
+            photo: "images/fan-van.jpg",
+            caption: "Placeholder: 2020 work tape / home session"
+          },
+          {
+            heading: "What survived the year",
+            paragraphs: [
+              "Placeholder for the songs or habits that came out of 2020 and still matter.",
+              "Expand as needed."
+            ]
+          }
+        ],
+        links: []
+      }
+    },
+    {
+      year: "2021",
+      event: "First proper release",
+      detail: {
+        intro: "Placeholder lead for 2021 — the first official release and the moment the project stepped into public.",
+        sections: [
+          {
+            heading: "First proper release",
+            paragraphs: [
+              "Placeholder for the debut release: title, what it meant, and how it felt to finally put something out under the name.",
+              "Press, first listeners, and the decision that this was no longer a side project.",
+              "Replace with real release details and stories."
+            ],
+            photo: "images/track-river-light.jpg",
+            caption: "Placeholder: first release artwork"
+          },
+          {
+            heading: "Live again",
+            paragraphs: [
+              "Placeholder for returning to stages and the first runs of shows after the release.",
+              "Add more if the year was busy."
+            ]
+          }
+        ],
+        links: [
+          { label: "Stream the release", url: "#" }
+        ]
+      }
+    },
+    {
+      year: "2022",
+      event: "Miles, rooms, and tighter harmonies",
+      detail: {
+        intro: "Placeholder lead for 2022 — more road, more rooms, and the blend getting sharper.",
+        sections: [
+          {
+            heading: "On the road",
+            paragraphs: [
+              "Placeholder for the tours, one-offs, and the nights that taught patience and economy of words.",
+              "Which markets, which rooms, and what changed in the live show.",
+              "Put the real route and stories here."
+            ],
+            photo: "images/fan-road.jpg",
+            caption: "Placeholder: 2022 tour stretch"
+          },
+          {
+            heading: "In the room",
+            paragraphs: [
+              "Placeholder for writing or recording sessions that year — the parts that only work when all three are present.",
+              "Expand as needed."
+            ]
+          }
+        ],
+        links: []
+      }
+    },
+    {
+      year: "2023",
+      event: "Orbit and the full-length chapter",
+      detail: {
+        intro: "Placeholder lead for 2023 — the year of Orbit and stepping into a full-length statement.",
+        sections: [
+          {
+            heading: "Making Orbit",
+            paragraphs: [
+              "Placeholder for writing, tracking, sequencing, and the decision to make a full album the old-fashioned way — as a journey, not a playlist.",
+              "Who produced, where it was cut, and what the record was trying to say.",
+              "Replace with the real album story."
+            ],
+            photo: "images/hero.jpg",
+            caption: "Placeholder: Orbit era"
+          },
+          {
+            heading: "Release and response",
+            paragraphs: [
+              "Placeholder for the release day, videos, press, and how the songs landed with listeners.",
+              "Add links below when you have official pages or videos."
+            ]
+          }
+        ],
+        links: [
+          { label: "Orbit on streaming", url: "#" },
+          { label: "Living It Right video", url: "#" }
+        ]
+      }
+    },
+    {
+      year: "2024",
+      event: "Sold-out hometown show",
+      detail: {
+        intro: "Placeholder lead for 2024 — hometown nights, bigger rooms, and the proof that the work was landing.",
+        sections: [
+          {
+            heading: "Sold-out hometown show",
+            paragraphs: [
+              "Placeholder for that hometown night: the room, the set, and what it meant to sell it out.",
+              "Who was in the crowd, how the harmonies felt in a full house, and the aftermath.",
+              "Replace with the real memory."
+            ],
+            photo: "images/fan-crowd.jpg",
+            caption: "Placeholder: hometown show"
+          },
+          {
+            heading: "The rest of the year",
+            paragraphs: [
+              "Placeholder for other 2024 milestones — festivals, runs, writing for the next chapter.",
+              "Add sections freely."
+            ]
+          }
+        ],
+        links: [
+          { label: "Show photos (coming soon)", url: "#" }
+        ]
+      }
+    },
+    {
+      year: "2025",
+      event: "New songs, same three voices",
+      detail: {
+        intro: "Placeholder lead for 2025 — new material, more miles, and the blend still at the center.",
+        sections: [
+          {
+            heading: "Writing and the road",
+            paragraphs: [
+              "Placeholder for 2025 writing sessions, singles, or tours. What was new, what stayed the same.",
+              "Use this page for the year’s arc once the real dates and titles are locked.",
+              "Optional photo after the text when you have one."
+            ],
+            photo: "images/fan-river.jpg",
+            caption: "Placeholder: 2025 session or show"
+          },
+          {
+            heading: "Looking toward the next chapter",
+            paragraphs: [
+              "Placeholder for what 2025 set up for the year after — unfinished songs, booked rooms, or a new release plan.",
+              "Edit when the year is fully in the books."
+            ]
+          }
+        ],
+        links: []
+      }
+    },
+    {
+      year: "2026",
+      event: "New chapter begins",
+      detail: {
+        intro: "Placeholder lead for 2026 — the current chapter. Update this page as the year unfolds.",
+        sections: [
+          {
+            heading: "Where things stand",
+            paragraphs: [
+              "Placeholder for the start of 2026: new songs, new shows, and the same three voices.",
+              "This is a living page — replace the copy as releases, tours, and milestones land.",
+              "Keep the text-first layout; drop photos in after a section when you have them."
+            ],
+            photo: "images/fan-road.jpg",
+            caption: "Placeholder: 2026 road or studio"
+          },
+          {
+            heading: "What’s next",
+            paragraphs: [
+              "Placeholder for announced plans, open goals, or the next thing you’re building toward.",
+              "Update often so the timeline stays current."
+            ]
+          }
+        ],
+        links: [
+          { label: "Tour dates", url: "#" },
+          { label: "Mailing list", url: "#merch" }
+        ]
+      }
+    }
   ],
 
   /* ─────────────────────────────────────────────────────────────
@@ -2236,42 +2554,49 @@ window.SITE = {
     notifyHeight();
   }
 
-  function openMemberModal(m) {
-    var d = m.detail || {};
-    memberModalTitle.textContent = m.name || "Member";
-    memberModalRole.textContent = m.role || "";
+  /* Shared detail overlay for members + timeline years.
+     opts: {
+       title, eyebrow, intro,
+       heroPhoto (optional top portrait — members only),
+       textFirst (true = heading/text then optional photo; false = photo then heading/text),
+       sections, links, note
+     }
+  */
+  function openDetailOverlay(opts) {
+    opts = opts || {};
+    memberModalTitle.textContent = opts.title || "";
+    memberModalRole.textContent = opts.eyebrow || "";
 
     var html = "";
-    // Prefer a separate detail portrait; fall back to the card photo
-    var heroSrc = d.photo || m.photo;
-    if (has(heroSrc)) {
-      html += '<div class="member-hero-photo"><img src="' + esc(media(heroSrc)) + '" alt="' + esc(m.name || "") + '" /></div>';
+    if (has(opts.heroPhoto)) {
+      html += '<div class="member-hero-photo"><img src="' + esc(media(opts.heroPhoto)) + '" alt="' + esc(opts.title || "") + '" /></div>';
     }
-    if (d.intro) {
-      html += '<p class="member-intro">' + esc(d.intro) + '</p>';
+    if (opts.intro) {
+      html += '<p class="member-intro">' + esc(opts.intro) + '</p>';
     }
 
-    (d.sections || []).forEach(function (sec) {
+    (opts.sections || []).forEach(function (sec) {
       html += '<div class="member-section">';
+      if (!opts.textFirst && has(sec.photo)) {
+        html += '<figure class="member-section-photo">' +
+          '<img src="' + esc(media(sec.photo)) + '" alt="' + esc(sec.caption || sec.heading || "") + '" loading="lazy" />';
+        if (sec.caption) html += '<figcaption>' + esc(sec.caption) + '</figcaption>';
+        html += '</figure>';
+      }
       if (sec.heading) html += '<h3>' + esc(sec.heading) + '</h3>';
       (sec.paragraphs || []).forEach(function (p) {
         html += '<p>' + esc(p) + '</p>';
       });
+      if (opts.textFirst && has(sec.photo)) {
+        html += '<figure class="member-section-photo" style="margin-top:1.25rem">' +
+          '<img src="' + esc(media(sec.photo)) + '" alt="' + esc(sec.caption || sec.heading || "") + '" loading="lazy" />';
+        if (sec.caption) html += '<figcaption>' + esc(sec.caption) + '</figcaption>';
+        html += '</figure>';
+      }
       html += '</div>';
     });
 
-    var gallery = d.gallery || [];
-    if (gallery.length) {
-      html += '<div class="member-gallery"><h3>Photos</h3><div class="member-gallery-list">';
-      gallery.forEach(function (g) {
-        html += '<figure><img src="' + esc(media(g.src)) + '" alt="' + esc(g.alt || "") + '" loading="lazy" />';
-        if (g.caption) html += '<figcaption>' + esc(g.caption) + '</figcaption>';
-        html += '</figure>';
-      });
-      html += '</div></div>';
-    }
-
-    var links = d.links || [];
+    var links = opts.links || [];
     if (links.length) {
       html += '<div class="member-links"><h3>Links</h3><ul class="member-links-list">';
       links.forEach(function (lnk) {
@@ -2284,13 +2609,43 @@ window.SITE = {
       html += '</ul></div>';
     }
 
-    html += '<p class="member-placeholder-note">This is a mockup detail page. Replace the text, photos, and links in <code>SITE.members[].detail</code> with the real content. The layout supports long biographies and large photo sets.</p>';
+    if (opts.note) {
+      html += '<p class="member-placeholder-note">' + opts.note + '</p>';
+    }
 
     memberModalBody.innerHTML = html;
     memberModal.classList.add("is-open");
     document.body.style.overflow = "hidden";
     memberModalBody.scrollTop = 0;
     notifyHeight();
+  }
+
+  function openMemberModal(m) {
+    var d = m.detail || {};
+    openDetailOverlay({
+      title: m.name || "Member",
+      eyebrow: m.role || "",
+      heroPhoto: d.photo || m.photo,
+      intro: d.intro || "",
+      textFirst: false,
+      sections: d.sections || [],
+      links: d.links || [],
+      note: "This is a mockup detail page. Replace the text, photos, and links in <code>SITE.members[].detail</code> with the real content. Each section can start with its own centered photo + caption."
+    });
+  }
+
+  function openTimelineModal(item) {
+    var d = item.detail || {};
+    openDetailOverlay({
+      title: item.year || "Year",
+      eyebrow: "Timeline",
+      heroPhoto: "",
+      intro: d.intro || "",
+      textFirst: true,
+      sections: d.sections || [],
+      links: d.links || [],
+      note: "Timeline detail page (text first). Replace the copy and optional photos in <code>SITE.timeline[].detail</code>. Years: 2018–2026."
+    });
   }
 
   (SITE.members || []).forEach(function (m) {
@@ -2334,9 +2689,19 @@ window.SITE = {
   var timelineEl = document.getElementById("timeline");
   (SITE.timeline || []).forEach(function (item) {
     var li = document.createElement("li");
-    li.innerHTML = '<span class="year"></span><span class="event"></span>';
+    li.setAttribute("tabindex", "0");
+    li.setAttribute("role", "button");
+    li.setAttribute("aria-label", "Open timeline for " + (item.year || "year"));
+    li.innerHTML = '<span class="year"></span><span class="event"></span><span class="more">View year →</span>';
     li.querySelector(".year").textContent = item.year || "";
     li.querySelector(".event").textContent = item.event || "";
+    li.addEventListener("click", function () { openTimelineModal(item); });
+    li.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openTimelineModal(item);
+      }
+    });
     timelineEl.appendChild(li);
   });
 
