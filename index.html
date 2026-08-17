@@ -1080,41 +1080,42 @@
       margin: 2.5rem 0 1.5rem;
     }
     .member-gallery > h3 {
-      margin: 0 0 1.25rem;
+      margin: 0 0 1.75rem;
       font-family: var(--font-display);
       font-size: 1.35rem;
       font-weight: 600;
       color: var(--copper);
       text-align: center;
     }
-    .member-gallery-grid {
-      display: grid;
-      gap: 0.85rem;
-      grid-template-columns: 1fr;
+    .member-gallery-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+      max-width: 28rem;
+      margin: 0 auto;
     }
-    @media (min-width: 520px) {
-      .member-gallery-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 720px) {
-      .member-gallery-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .member-gallery-grid figure {
+    .member-gallery-list figure {
       margin: 0;
-      border: 1px solid var(--border);
-      border-radius: 0.65rem;
-      overflow: hidden;
-      background: var(--bg-elevated);
+      text-align: center;
     }
-    .member-gallery-grid img {
+    .member-gallery-list img {
       width: 100%;
+      max-width: 22rem;
+      margin: 0 auto;
       aspect-ratio: 4 / 3;
       object-fit: cover;
+      border-radius: 0.65rem;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      display: block;
     }
-    .member-gallery-grid figcaption {
-      padding: 0.55rem 0.7rem;
-      font-size: 0.78rem;
+    .member-gallery-list figcaption {
+      margin: 0.7rem 0 0;
+      font-size: 0.85rem;
       color: var(--fg-subtle);
-      line-height: 1.35;
+      line-height: 1.4;
+      max-width: 22rem;
+      margin-inline: auto;
     }
     .member-links {
       margin: 2.25rem 0 0;
@@ -1441,9 +1442,13 @@ window.SITE = {
   /* ─────────────────────────────────────────────────────────────
      6) BAND MEMBERS + TIMELINE
      Click a member card → opens a full detail overlay (not in nav).
-     detail.sections = long-form text blocks
-     detail.gallery  = as many photos as you want
-     detail.links    = optional hyperlinks
+
+     photo        = small card photo on the main History section
+     detail.photo = larger portrait at the top of the detail page
+                    (use a different image if you want)
+     detail.sections = long-form text (add as many as you need)
+     detail.gallery  = photos shown one-at-a-time, centered, with caption
+     detail.links    = optional hyperlinks at the bottom
      ───────────────────────────────────────────────────────────── */
   members: [
     {
@@ -1452,32 +1457,49 @@ window.SITE = {
       bio: "The restless one. The quiet architect. Preferring the corner of the room with the best light and the worst coffee.",
       photo: "images/member-james.jpg",
       detail: {
+        photo: "images/fan-studio.jpg",
         intro: "The quiet architect of the three-part stack — always chasing the right light, the right take, and the song that still feels unfinished.",
         sections: [
           {
             heading: "Early years",
             paragraphs: [
               "James grew up with a cheap acoustic, a stack of worn cassettes, and more questions than answers. The first songs were written in the back of cars, on porches after midnight, and in the half-hour windows between day jobs. Nothing was polished. Everything was honest.",
-              "By the time the three of them found the same room, the habits were already set: record everything, cut what doesn’t serve the song, and leave space for the harmony that no one planned."
+              "By the time the three of them found the same room, the habits were already set: record everything, cut what doesn’t serve the song, and leave space for the harmony that no one planned.",
+              "Those early years were less about building a career and more about staying close to the feeling that made the songs necessary in the first place. The rest would come later."
             ]
           },
           {
-            heading: "On the road & in the room",
+            heading: "Finding the blend",
             paragraphs: [
-              "Touring taught patience. Long drives taught economy of words. The best lines still arrive when the coffee is bad and the light is almost gone. James prefers the corner of the room — not because he wants to hide, but because that’s where you can hear the blend without the ego getting loud.",
-              "In the studio he is the one who will play a part forty times if the fortieth is the one that finally sits right under the vocal. Outside the studio he is the one who remembers which gas station had the decent coffee three states ago."
+              "Three strong voices in one room can easily turn into three separate agendas. The trick was learning that the song is the only boss that matters. If a part doesn’t serve the whole, it gets cut — even when it’s one of the favorites.",
+              "James tends to write from the edges: the unfinished thought, the almost-said thing, the melody that arrives while the coffee is still bad. The other two pull those fragments into the center and make them land.",
+              "The result is a sound that feels both intimate and large — the kind of harmony that only happens when nobody is trying to win."
+            ]
+          },
+          {
+            heading: "On the road",
+            paragraphs: [
+              "Touring taught patience. Long drives taught economy of words. The best lines still arrive when the light is almost gone and the next town is still two hours away.",
+              "He prefers the corner of the room — not because he wants to hide, but because that’s where you can hear the blend without the ego getting loud. Outside the studio he is the one who remembers which gas station had the decent coffee three states ago.",
+              "Van years leave a particular kind of memory: the same playlist on repeat, the same stretch of interstate at 2 a.m., the same quiet agreement that the next show will be the one that finally feels right."
+            ]
+          },
+          {
+            heading: "In the studio",
+            paragraphs: [
+              "In the studio he is the one who will play a part forty times if the fortieth is the one that finally sits right under the vocal. Guitar that stays out of the way until it has something to say. Melodies that leave room for two other voices.",
+              "The goal is never the perfect take for its own sake. It’s the take that makes the other two parts feel inevitable. When that happens, the song stops belonging to any one of them and starts belonging to the room."
             ]
           },
           {
             heading: "What he brings",
             paragraphs: [
-              "Guitar that stays out of the way until it has something to say. Melodies that leave room for two other voices. A quiet insistence that the song is the boss. The rest is just mileage, late nights, and the occasional perfect golden hour by the water.",
-              "This page is a placeholder for a much longer story — photos from the van years, early demos, gear notes, and the pieces that never made the record. Swap the dummy paragraphs and image paths for the real ones whenever you’re ready."
+              "A quiet insistence that the song is the boss. A willingness to leave space. The patience to keep chasing the version that feels true instead of the version that simply works.",
+              "The rest is just mileage, late nights, and the occasional perfect golden hour by the water. This page is a placeholder for a much longer story — photos from the van years, early demos, gear notes, and the pieces that never made the record. Swap the dummy paragraphs and image paths for the real ones whenever you’re ready."
             ]
           }
         ],
         gallery: [
-          { src: "images/member-james.jpg", alt: "James — studio light", caption: "Placeholder: early studio session" },
           { src: "images/fan-rehearsal.jpg", alt: "Rehearsal", caption: "Placeholder: first rehearsal space" },
           { src: "images/fan-van.jpg", alt: "Van tour", caption: "Placeholder: first van tour" },
           { src: "images/fan-studio.jpg", alt: "Recording", caption: "Placeholder: tracking vocals" },
@@ -1500,20 +1522,28 @@ window.SITE = {
       bio: "Never met a melody she couldn’t find a third part for. The glue and the heartbeat — holds the low end and the high harmonies at the same time.",
       photo: "images/member-marcus.jpg",
       detail: {
+        photo: "images/fan-rehearsal.jpg",
         intro: "The glue and the heartbeat. If a third part exists, Lori will find it — and make it sound inevitable.",
         sections: [
           {
             heading: "About Lori",
             paragraphs: [
               "Placeholder long-form text for Lori. Replace this entire block with her real story, influences, and whatever else you want visitors to read when they click her photo.",
-              "You can add as many sections and paragraphs as you need — the overlay scrolls, so a multi-page-length bio is fine. Same for the photo gallery below."
+              "You can add as many sections and paragraphs as you need — the overlay scrolls, so a multi-page-length bio is fine.",
+              "Add more heading + paragraphs blocks below this one to build out a genuinely long page."
+            ]
+          },
+          {
+            heading: "More (placeholder section)",
+            paragraphs: [
+              "Another section to show how multi-page content stacks. Keep adding these until the real story is complete."
             ]
           }
         ],
         gallery: [
-          { src: "images/member-marcus.jpg", alt: "Lori", caption: "Placeholder portrait" },
-          { src: "images/fan-rehearsal.jpg", alt: "Rehearsal", caption: "Placeholder photo" },
-          { src: "images/fan-studio.jpg", alt: "Studio", caption: "Placeholder photo" }
+          { src: "images/fan-studio.jpg", alt: "Studio", caption: "Placeholder photo" },
+          { src: "images/fan-river.jpg", alt: "River", caption: "Placeholder photo" },
+          { src: "images/fan-crowd.jpg", alt: "Crowd", caption: "Placeholder photo" }
         ],
         links: [
           { label: "Instagram", url: "https://instagram.com/" }
@@ -1526,6 +1556,7 @@ window.SITE = {
       bio: "Grew up chasing open highways and late-night radio. Somehow still remembers every lyric after three hours of sleep. Turns half-finished ideas into finished songs.",
       photo: "images/member-eli.jpg",
       detail: {
+        photo: "images/fan-road.jpg",
         intro: "Bass, low harmonies, and the memory for every lyric even after three hours of sleep.",
         sections: [
           {
@@ -1534,12 +1565,18 @@ window.SITE = {
               "Placeholder long-form text for Shannon. The detail overlay is designed to hold a full biography, tour stories, gear lists, and dozens of photos without feeling cramped.",
               "Add or remove sections freely. Hyperlinks at the bottom can point to socials, interviews, or anything else."
             ]
+          },
+          {
+            heading: "More (placeholder section)",
+            paragraphs: [
+              "Another section for demonstration. Replace with real content when ready."
+            ]
           }
         ],
         gallery: [
-          { src: "images/member-eli.jpg", alt: "Shannon", caption: "Placeholder portrait" },
-          { src: "images/fan-road.jpg", alt: "Road", caption: "Placeholder photo" },
-          { src: "images/fan-van.jpg", alt: "Van", caption: "Placeholder photo" }
+          { src: "images/fan-van.jpg", alt: "Van", caption: "Placeholder photo" },
+          { src: "images/fan-rehearsal.jpg", alt: "Rehearsal", caption: "Placeholder photo" },
+          { src: "images/fan-studio.jpg", alt: "Studio", caption: "Placeholder photo" }
         ],
         links: [
           { label: "Instagram", url: "https://instagram.com/" }
@@ -2205,8 +2242,10 @@ window.SITE = {
     memberModalRole.textContent = m.role || "";
 
     var html = "";
-    if (has(m.photo)) {
-      html += '<div class="member-hero-photo"><img src="' + esc(media(m.photo)) + '" alt="' + esc(m.name || "") + '" /></div>';
+    // Prefer a separate detail portrait; fall back to the card photo
+    var heroSrc = d.photo || m.photo;
+    if (has(heroSrc)) {
+      html += '<div class="member-hero-photo"><img src="' + esc(media(heroSrc)) + '" alt="' + esc(m.name || "") + '" /></div>';
     }
     if (d.intro) {
       html += '<p class="member-intro">' + esc(d.intro) + '</p>';
@@ -2223,7 +2262,7 @@ window.SITE = {
 
     var gallery = d.gallery || [];
     if (gallery.length) {
-      html += '<div class="member-gallery"><h3>Photos</h3><div class="member-gallery-grid">';
+      html += '<div class="member-gallery"><h3>Photos</h3><div class="member-gallery-list">';
       gallery.forEach(function (g) {
         html += '<figure><img src="' + esc(media(g.src)) + '" alt="' + esc(g.alt || "") + '" loading="lazy" />';
         if (g.caption) html += '<figcaption>' + esc(g.caption) + '</figcaption>';
