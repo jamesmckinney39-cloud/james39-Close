@@ -9,7 +9,7 @@
   THE CLOSE — UPLOAD MUSIC + VIDEOS TEMPLATE
 
   MUSIC goes in folder:  music/   (mp3 files)
-  VIDEOS go in folder:   videos/  (mp4 files)
+  VIDEOS: use YouTube links (set youtubeUrl in SITE.videos — no local mp4 needed)
   PHOTOS go in folder:   images/
 
   Edit text + filenames in the SITE block (search: EDIT ME)
@@ -681,6 +681,113 @@
     .masonry .tall { min-height: 18rem; }
     .masonry .wide { min-height: 12rem; }
 
+    /* Fan preview (3 side-by-side on home) */
+    .fan-preview {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+    @media (min-width: 640px) {
+      .fan-preview { grid-template-columns: repeat(3, 1fr); }
+    }
+    .fan-preview figure {
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+    .fan-preview img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+    .fan-view-all {
+      display: flex;
+      justify-content: center;
+    }
+    .fan-view-all .btn-ghost {
+      margin-top: 0;
+    }
+
+    /* Fan gallery modal (full hidden page) */
+    .fan-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      display: none;
+      flex-direction: column;
+      background: rgba(12, 10, 9, 0.94);
+      backdrop-filter: blur(10px);
+    }
+    .fan-modal.is-open { display: flex; }
+    .fan-modal-shell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: min(100%, 64rem);
+      margin: 0 auto;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      max-height: 100%;
+      overflow: hidden;
+    }
+    .fan-modal-head {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(22, 19, 17, 0.92);
+      backdrop-filter: blur(8px);
+    }
+    .fan-modal-head h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 1.85rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .fan-modal-close {
+      width: 2.75rem;
+      height: 2.75rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      background: transparent;
+      color: var(--fg-muted);
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fan-modal-close:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+    .fan-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: clamp(1.25rem, 3vw, 2rem);
+    }
+    .fan-modal-body .masonry {
+      columns: 1;
+      column-gap: 1rem;
+    }
+    @media (min-width: 600px) {
+      .fan-modal-body .masonry { columns: 2; }
+    }
+    @media (min-width: 960px) {
+      .fan-modal-body .masonry { columns: 3; }
+    }
+
     /* Q&A */
     .qa {
       max-width: 48rem;
@@ -1328,7 +1435,7 @@ window.SITE = {
     videos: {
       eyebrow: "Watch",
       title: "Videos",
-      subtitle: "Watch full videos on site, or download them to keep."
+      subtitle: "Watch full videos on site, or open them on our YouTube channel."
     },
     history: {
       eyebrow: "The road",
@@ -1397,41 +1504,43 @@ window.SITE = {
   ],
 
   /* ─────────────────────────────────────────────────────────────
-     5) VIDEOS  — UPLOAD FILES, NOT YOUTUBE LINKS
+     5) VIDEOS  — YOUTUBE LINKS (hosted on your channel)
      ----------------------------------------------------------------
-     1. Put your .mp4 files in the  videos/  folder
-     2. Set "file" to that filename (example: "videos/my-video.mp4")
-     3. Visitors get a full-screen player + Download button
+     1. Paste the full YouTube watch URL into "youtubeUrl"
+        Example: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+     2. Thumbnail = the preview image in the grid (from images/)
+     3. Visitors open the video in an on-site player (YouTube embed)
+        or can jump to the full YouTube page via the link.
 
-     Thumbnail = the preview image in the grid (from images/)
+     Replace the PLACEHOLDER urls with your real video links later.
      ───────────────────────────────────────────────────────────── */
   videos: [
     {
       title: "Hands - Live in the Studio",
       description: "Shot on the same stretch of river that inspired the song.",
       thumbnail: "images/video-river.jpg",
-      file: "videos/river-light.mp4",
+      youtubeUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_HANDS",
       length: "0:05"
     },
     {
       title: "All Over Aches - Live at Radio Station",
       description: "One-take performance captured in a single afternoon.",
       thumbnail: "images/video-live.jpg",
-      file: "videos/dust-wire-live.mp4",
+      youtubeUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_ACHES",
       length: "0:05"
     },
     {
       title: "Orbit (Lyric Video)",
       description: "Short documentary-style look at how the harmonies come together.",
       thumbnail: "images/video-behind.jpg",
-      file: "videos/session-diaries.mp4",
+      youtubeUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_ORBIT",
       length: "0:05"
     },
     {
       title: "Got A Love - Behind the scenes arrangement",
       description: "Simple, warm visual treatment with the full lyrics.",
       thumbnail: "images/video-lyric.jpg",
-      file: "videos/golden-hour-lyric.mp4",
+      youtubeUrl: "https://www.youtube.com/watch?v=PLACEHOLDER_GOT_A_LOVE",
       length: "0:05"
     }
   ],
@@ -1912,7 +2021,10 @@ window.SITE = {
 
   /* ─────────────────────────────────────────────────────────────
      7) FAN PHOTOS
-     tall: true makes the photo taller in the masonry grid
+     First 3 appear as a side-by-side preview on the home page.
+     All entries open in the full Fan Photos gallery (modal page).
+     Replace image paths + alt text with real photos later.
+     tall is only used in the full gallery masonry.
      ───────────────────────────────────────────────────────────── */
   fans: [
     { image: "images/fan-crowd.jpg", alt: "Crowd at a live show", tall: false },
@@ -1920,7 +2032,61 @@ window.SITE = {
     { image: "images/fan-van.jpg", alt: "First van tour", tall: false },
     { image: "images/fan-studio.jpg", alt: "Recording session", tall: true },
     { image: "images/fan-river.jpg", alt: "River golden hour", tall: false },
-    { image: "images/fan-road.jpg", alt: "Open road", tall: true }
+    { image: "images/fan-road.jpg", alt: "Open road", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 07", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 08", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 09", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 10", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 11", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 12", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 13", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 14", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 15", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 16", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 17", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 18", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 19", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 20", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 21", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 22", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 23", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 24", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 25", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 26", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 27", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 28", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 29", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 30", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 31", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 32", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 33", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 34", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 35", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 36", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 37", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 38", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 39", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 40", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 41", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 42", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 43", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 44", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 45", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 46", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 47", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 48", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 49", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 50", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 51", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 52", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 53", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 54", tall: true },
+    { image: "images/fan-crowd.jpg", alt: "Fan photo 55", tall: false },
+    { image: "images/fan-rehearsal.jpg", alt: "Fan photo 56", tall: true },
+    { image: "images/fan-van.jpg", alt: "Fan photo 57", tall: false },
+    { image: "images/fan-studio.jpg", alt: "Fan photo 58", tall: true },
+    { image: "images/fan-river.jpg", alt: "Fan photo 59", tall: false },
+    { image: "images/fan-road.jpg", alt: "Fan photo 60", tall: true }
   ],
 
   /* ─────────────────────────────────────────────────────────────
@@ -2065,7 +2231,11 @@ window.SITE = {
         <h2 data-s="fans.title">Fan Photos</h2>
         <p data-s="fans.subtitle"></p>
       </div>
-      <div class="masonry" id="fanMasonry"></div>
+      <!-- 3 side-by-side preview photos on the home page -->
+      <div class="fan-preview" id="fanPreview"></div>
+      <div class="fan-view-all">
+        <button class="btn-ghost" id="fanViewAll" type="button">View all fan photos →</button>
+      </div>
     </div>
   </section>
 
@@ -2128,8 +2298,8 @@ window.SITE = {
       <img id="modalImg" alt="" />
       <div class="modal-msg" id="modalMsg">
         <div>
-          <strong>Add a video file</strong>
-          <p>Add a video file in the <code>videos/</code> folder and set <code>file</code> in SITE.videos.</p>
+          <strong>Add a YouTube link</strong>
+          <p>Paste a YouTube URL into <code>youtubeUrl</code> in <code>SITE.videos</code>.</p>
         </div>
       </div>
     </div>
@@ -2148,6 +2318,19 @@ window.SITE = {
     </div>
     <div class="member-modal-body" id="memberModalBody">
       <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- Fan Photos full gallery (hidden page / modal, same pattern as members + timeline) -->
+<div class="fan-modal" id="fanModal" role="dialog" aria-modal="true" aria-labelledby="fanModalTitle">
+  <div class="fan-modal-shell">
+    <div class="fan-modal-head">
+      <h2 id="fanModalTitle">Fan Photos</h2>
+      <button class="fan-modal-close" id="fanModalClose" type="button" aria-label="Close">✕</button>
+    </div>
+    <div class="fan-modal-body" id="fanModalBody">
+      <div class="masonry" id="fanMasonryFull"></div>
     </div>
   </div>
 </div>
@@ -2437,14 +2620,20 @@ window.SITE = {
     audio.currentTime = pct * audio.duration;
   });
 
-  /* ---------- VIDEOS (uploaded mp4 + player + download) ---------- */
+  /* ---------- VIDEOS (YouTube links + on-site embed player) ---------- */
   var videoGrid = document.getElementById("videoGrid");
   var videos = SITE.videos || [];
   var modal = document.getElementById("videoModal");
   var modalStage = document.getElementById("modalStage");
 
-  function videoFile(v) {
-    return media(v.file || v.videoUrl || "");
+  function youtubeId(url) {
+    if (!url) return "";
+    var m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : "";
+  }
+
+  function videoUrl(v) {
+    return media(v.youtubeUrl || v.file || v.videoUrl || "");
   }
 
   function clearModalMedia() {
@@ -2463,21 +2652,23 @@ window.SITE = {
     img.src = media(v.thumbnail);
     img.style.display = "";
 
-    var src = videoFile(v);
-    if (has(src)) {
-      var vid = document.createElement("video");
-      vid.src = src;
-      vid.controls = true;
-      vid.autoplay = true;
-      vid.playsInline = true;
-      vid.controlsList = "nodownload"; // browser may still allow; we offer Download button separately
-      vid.setAttribute("controlsList", "nodownload");
-      modalStage.appendChild(vid);
+    var src = videoUrl(v);
+    var id = youtubeId(src);
+    if (id && !String(src).includes("PLACEHOLDER")) {
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.title = v.title || "YouTube video";
+      modalStage.appendChild(iframe);
       modalStage.classList.add("has-media");
       img.style.display = "none";
-      vid.play().catch(function () {
-        toast("Tap play on the video", "Autoplay was blocked by the browser.");
-      });
+    } else if (has(src) && !String(src).includes("PLACEHOLDER")) {
+      window.open(src, "_blank", "noopener,noreferrer");
+      return;
+    } else {
+      toast("YouTube link not set yet", "Paste the real youtubeUrl in SITE.videos");
+      return;
     }
     modal.classList.add("is-open");
     notifyHeight();
@@ -2489,11 +2680,12 @@ window.SITE = {
   }
 
   if (!videos.length) {
-    videoGrid.innerHTML = '<p class="empty-hint">No videos yet. Add .mp4 files to the <strong>videos/</strong> folder and list them in <strong>SITE.videos</strong>.</p>';
+    videoGrid.innerHTML = '<p class="empty-hint">No videos yet. Add entries in <strong>SITE.videos</strong> with a <strong>youtubeUrl</strong>.</p>';
   }
 
   videos.forEach(function (v) {
-    var src = videoFile(v);
+    var src = videoUrl(v);
+    var hasLink = has(src) && !String(src).includes("PLACEHOLDER");
     var card = document.createElement("article");
     card.className = "video-card";
     card.innerHTML =
@@ -2505,34 +2697,15 @@ window.SITE = {
         '<h3></h3><p></p>' +
         '<div class="video-actions">' +
           '<button class="btn-solid watch-btn" type="button">Watch</button>' +
-          '<button class="btn-outline dl-btn" type="button"' + (has(src) ? "" : " disabled") + '>Download</button>' +
+          '<a class="btn-outline yt-btn" href="' + esc(src || "#") + '" target="_blank" rel="noopener noreferrer"' + (hasLink ? "" : ' style="opacity:0.45;pointer-events:none"') + '>YouTube</a>' +
         '</div>' +
       '</div>';
     card.querySelector("h3").textContent = v.title || "Video";
     card.querySelector("p").textContent = v.description || "";
     card.querySelectorAll(".video-thumb, .watch-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        if (!has(src)) {
-          toast("No video file yet", "Put an mp4 in videos/ and set videos[].file");
-          return;
-        }
         openVideo(v);
       });
-    });
-    card.querySelector(".dl-btn").addEventListener("click", function () {
-      if (!has(src)) {
-        toast("No video file yet", "Upload an mp4 into videos/ for this item");
-        return;
-      }
-      var a = document.createElement("a");
-      a.href = src;
-      a.download = (v.title || "video").replace(/\s+/g, "-") + ".mp4";
-      a.target = "_blank";
-      a.rel = "noopener";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      toast("Download started", v.title);
     });
     videoGrid.appendChild(card);
   });
@@ -2681,7 +2854,13 @@ window.SITE = {
 
   window.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
+      var fm = document.getElementById("fanModal");
       if (memberModal.classList.contains("is-open")) closeMemberModal();
+      else if (fm && fm.classList.contains("is-open")) {
+        fm.classList.remove("is-open");
+        document.body.style.overflow = "";
+        if (typeof notifyHeight === "function") notifyHeight();
+      }
       else closeVideo();
     }
   });
@@ -2705,13 +2884,44 @@ window.SITE = {
     timelineEl.appendChild(li);
   });
 
-  /* ---------- FANS ---------- */
-  var masonry = document.getElementById("fanMasonry");
-  (SITE.fans || []).forEach(function (f) {
+  /* ---------- FANS (3-up preview + full gallery modal) ---------- */
+  var fanPreview = document.getElementById("fanPreview");
+  var fanModal = document.getElementById("fanModal");
+  var fanMasonryFull = document.getElementById("fanMasonryFull");
+  var fans = SITE.fans || [];
+
+  function openFanModal() {
+    fanModal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    notifyHeight();
+  }
+  function closeFanModal() {
+    fanModal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    notifyHeight();
+  }
+
+  // Home preview: first 3 photos side-by-side (click opens full gallery)
+  fans.slice(0, 3).forEach(function (f) {
+    var fig = document.createElement("figure");
+    fig.innerHTML = '<img alt="" src="' + esc(media(f.image)) + '" loading="lazy" />';
+    fig.querySelector("img").alt = f.alt || "Fan photo";
+    fig.addEventListener("click", openFanModal);
+    fanPreview.appendChild(fig);
+  });
+
+  // Full gallery (all placeholders) inside the modal
+  fans.forEach(function (f) {
     var fig = document.createElement("figure");
     fig.innerHTML = '<img class="' + (f.tall ? "tall" : "wide") + '" alt="" src="' + esc(media(f.image)) + '" loading="lazy" />';
     fig.querySelector("img").alt = f.alt || "Fan photo";
-    masonry.appendChild(fig);
+    fanMasonryFull.appendChild(fig);
+  });
+
+  document.getElementById("fanViewAll").addEventListener("click", openFanModal);
+  document.getElementById("fanModalClose").addEventListener("click", closeFanModal);
+  fanModal.addEventListener("click", function (e) {
+    if (e.target === fanModal) closeFanModal();
   });
 
   /* ---------- Q&A ---------- */
